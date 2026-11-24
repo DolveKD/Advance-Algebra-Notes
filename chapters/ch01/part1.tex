@@ -1,0 +1,454 @@
+% ===== 原稿 PDF 第 6 页 =====
+% 定义 3（代数余子式）、例、定义 4（上、下三角行列式）、性质 1 的证明（上三角部分）
+\usetikzlibrary{matrix}
+
+\begin{definition}[$n$ 阶行列式的代数余子式]
+称
+\[
+A_{ij}=(-1)^{i+j}M_{ij}
+\]
+为元素 $a_{ij}$ 的\textbf{代数余子式}。
+\end{definition}
+
+于是
+\[
+|A|=a_{11}A_{11}+a_{21}A_{21}+\cdots+a_{n1}A_{n1}.
+\]
+
+\begin{example}
+\[
+\resizebox{0.98\linewidth}{!}{$\displaystyle
+|A|=\begin{vmatrix}
+1 & 0 & -1 & 3 & 1\\
+0 & 2 & 5 & 4 & 1\\
+3 & -2 & -1 & 1 & 0\\
+0 & 0 & 2 & 1 & 3\\
+1 & 3 & -1 & 5 & 1
+\end{vmatrix}
+=a_{11}A_{11}+a_{21}A_{21}+a_{31}A_{31}+a_{41}A_{41}+a_{51}A_{51}$},
+\]
+\end{example}
+
+\begin{definition}[$n$ 阶上、下三角行列式]
+若 $a_{ij}=0\ (\forall\,i>j)$，即主对角线下方所有元素都为 $0$，则称 $|A|$ 为\textbf{上三角行列式}。
+
+若 $a_{ij}=0\ (\forall\,i<j)$，即主对角线上方所有元素全为 $0$，则称 $|A|$ 为\textbf{下三角行列式}。
+\end{definition}
+
+\begin{proposition}[性质 1]
+上三角（下三角）行列式值等于主对角元素的乘积。
+\end{proposition}
+
+\begin{proof}
+当 $n=1$ 时，$|a_{11}|=a_{11}$，结论成立。
+
+设结论对 $n-1$ 阶行列式成立，现证 $n$ 阶的情形。
+
+\textbf{1° 上三角}
+\[
+|A|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+0 & a_{22} & \cdots & a_{2n}\\
+ & & \ddots & \vdots\\
+0 & 0 & & a_{nn}
+\end{vmatrix}
+\]
+由定义，$|A|=a_{11}M_{11}$，其中 $M_{11}$ 为 $n-1$ 阶上三角行列式。
+
+由归纳假设，$M_{11}=a_{22}\cdots a_{nn}$，$\Rightarrow |A|=a_{11}a_{22}\cdots a_{nn}$。
+
+% ===== 原稿 PDF 第 7 页 =====
+% 性质 1 证明的 2° 下三角情形、性质 3 及其证明（行的情形、列的情形之第 1 列）
+
+\textbf{2° 下三角}
+\[
+|A|=\begin{vmatrix}
+a_{11} & 0 & 0 & \cdots & 0\\
+a_{21} & a_{22} & 0 & \cdots & 0\\
+a_{31} & a_{32} & a_{33} & \cdots & 0\\
+\vdots & \vdots & \vdots & & \vdots\\
+a_{n1} & a_{n2} & a_{n3} & \cdots & a_{nn}
+\end{vmatrix}
+\]
+由定义
+\[
+|A|=a_{11}M_{11}-a_{21}M_{21}+\cdots+(-1)^{n+1}a_{n1}M_{n1}.
+\]
+考虑余子式 $M_{k1}\ (1\le k\le n)$，设 $M_{k1}=(b_{ij})_{(n-1)\times(n-1)}$，其中
+\[
+b_{ij}=
+\begin{cases}
+a_{i,j+1}, & 1\le i\le k-1,\\
+a_{i+1,j+1}, & k\le i\le n-1.
+\end{cases}
+\]
+$|A|$ 为下三角行列式，即 $a_{ij}=0\ (\forall\,i<j)$，故 $M_{k1}$ 都是下三角行列式。
+
+\textbf{断言}：当 $k\ge 2$ 时，$M_{k1}$ 有一个主对角元 $=0$，即
+\[
+b_{k-1,k-1}=a_{k-1,k}=0.
+\]
+于是
+\[
+\Rightarrow |A|=a_{11}a_{22}\cdots a_{nn}.
+\]
+\end{proof}
+
+\begin{proposition}[性质 3]
+行列式 $|A|$ 的某一行（列）乘以常数 $C$，得到的行列式 $|B|=C|A|$。
+\end{proposition}
+
+\begin{proof}
+当 $n=1$ 时，$|B|=|C\cdot a_{11}|=Ca_{11}=C|A|$。
+
+设结论对 $n-1$ 阶行列式成立，现证 $n$ 阶的情形。
+
+\textbf{1° 行的情形}
+
+记 $|A|$ 的余子式为 $M_{ij}$，$|B|$ 的余子式为 $N_{ij}$。
+\[
+|B|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\vdots & \vdots & & \vdots\\
+Ca_{i1} & Ca_{i2} & \cdots & Ca_{in}\\
+\vdots & \vdots & & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+\]
+由定义
+\[
+|B|=a_{11}N_{11}-a_{21}N_{21}+\cdots+(-1)^{i+1}Ca_{i1}N_{i1}+\cdots+(-1)^{n+1}a_{n1}N_{n1}.
+\]
+当 $k\ne i$ 时，$N_{k1}$ 是 $M_{k1}$ 的某一行元素乘以 $C$ 得到，由归纳假设 $N_{k1}=CM_{k1}$，又 $N_{i1}=M_{i1}$，故
+\begin{align*}
+\Rightarrow|B|&=C\Big(a_{11}M_{11}-a_{21}M_{21}+\cdots+(-1)^{i+1}a_{i1}M_{i1}\\
+&\qquad+\cdots+(-1)^{n+1}a_{n1}M_{n1}\Big)\\
+&=C|A|.
+\end{align*}
+
+\textbf{2° 列的情形}
+
+（1）乘以 $C$ 是第 $1$ 列
+\[
+|B|=\begin{vmatrix}
+Ca_{11} & a_{12} & \cdots & a_{1n}\\
+Ca_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & & \vdots\\
+Ca_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+\qquad N_{i1}=M_{i1}\ (\forall i)
+\]
+\begin{align*}
+|B|&=Ca_{11}N_{11}-C\cdot a_{21}N_{21}+\cdots+(-1)^{n+1}\cdot Ca_{n1}N_{n1}\\
+&=C\Big(a_{11}N_{11}-a_{21}N_{21}+\cdots+(-1)^{n+1}a_{n1}N_{n1}\Big)\\
+&=C|A|
+\end{align*}
+
+% ===== 原稿 PDF 第 8 页 =====
+% 性质 3 列的情形（2）、性质 2、性质 4 及证明的 1°
+
+（2）乘以 $C$ 是第 $j$ 列，$j\ge 2$
+\[
+|B|=\begin{vmatrix}
+a_{11} & \cdots & Ca_{1j} & \cdots & a_{1n}\\
+a_{21} & \cdots & Ca_{2j} & \cdots & a_{2n}\\
+\vdots & & \vdots & & \vdots\\
+a_{n1} & \cdots & Ca_{nj} & \cdots & a_{nn}
+\end{vmatrix}
+\]
+\[
+|B|=a_{11}N_{11}-a_{21}N_{21}+\cdots+(-1)^{n+1}a_{n1}N_{n1}.
+\]
+$N_{k1}$ 是由 $M_{k1}$ 的某一列乘以 $C$ 得到，由归纳假设 $N_{k1}=CM_{k1}\ (\forall k)$，故
+\[
+\Rightarrow|B|=C\Big(a_{11}M_{11}-a_{21}M_{21}+\cdots+(-1)^{n+1}a_{n1}M_{n1}\Big)=C|A|.
+\]
+\end{proof}
+
+于是
+\[
+\resizebox{0.98\linewidth}{!}{$\displaystyle
+|B|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\cdots & & & \\
+Ca_{i1} & Ca_{i2} & \cdots & Ca_{in}\\
+\cdots & & & \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+=C\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\cdots & & & \\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+\cdots & & & \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}$}
+\]
+
+\begin{proposition}[性质 2]
+若 $|A|$ 有一行（列）元素全为 $0$，则行列式值为 $0$。
+\end{proposition}
+
+\begin{proof}
+\[
+\resizebox{0.98\linewidth}{!}{$\displaystyle
+|A|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\cdots & & & \cdots\\
+0 & 0 & \cdots & 0\\
+\vdots & & & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+=0\cdot
+\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\cdots & & & \cdots\\
+0 & 0 & \cdots & 0\\
+\vdots & & & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+=0$}
+\]
+% 原稿此处第二式的第 i 行仍写作 0 0 ⋯ 0（提出因子 0 之前的同一行列式）
+\end{proof}
+
+\begin{proposition}[性质 4]
+对换 $|A|$ 的两个不同的行，所得行列式 $|B|=-|A|$。
+\end{proposition}
+
+\begin{proof}
+当 $n=2$ 时，结论成立。
+
+设结论对 $n-1$ 阶行列式成立。
+
+现证 $n$ 阶行列式的情形。
+
+\textbf{1° 对换相邻两行}，即 $i$ 行与 $i+1$ 行
+\[
+|B|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\vdots & \vdots & & \vdots\\
+a_{i+1,1} & a_{i+1,2} & \cdots & a_{i+1,n}\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+\vdots & \vdots & & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+\]
+% 原稿此式左侧标注行号 i+1、i（示第 i 行与第 i+1 行已对换）
+\[
+\resizebox{0.98\linewidth}{!}{$\displaystyle
+|B|=a_{11}N_{11}-a_{21}N_{21}+\cdots+(-1)^{i+1}a_{i+1,1}N_{i1}+(-1)^{i+2}a_{i1}N_{i+1,1}+\cdots+(-1)^{n+1}a_{n1}N_{n1}$}
+\]
+当 $k\ne i,i+1$ 时，$N_{k1}$ 由 $M_{k1}$ 对换两行得到。
+
+% ===== 原稿 PDF 第 9 页 =====
+% 性质 4 证明续、性质 5（行）、性质 6（拆分）
+
+由归纳假设，$N_{k1}=-M_{k1}\ (\forall k\ne i,i+1)$，又
+\[
+N_{i1}=M_{i+1,1},\qquad N_{i+1,1}=M_{i1}.
+\]
+\begin{align*}
+\Rightarrow|B|&=-\Big(a_{11}M_{11}-a_{21}M_{21}+\cdots+(-1)^{i+1}a_{i1}M_{i1}\\
+&\qquad+\cdots+(-1)^{n+1}a_{n1}M_{n1}\Big)\\
+&=-|A|.
+\end{align*}
+
+\textbf{2° 对换 $|A|$ 的第 $i$ 行与第 $j$ 行}（$i<j$），即做了 $2(j-i)-1$ 次相邻对换。
+\begin{center}
+\begin{tikzpicture}[>=Stealth,every node/.style={inner sep=2pt}]
+  \node (a1) at (0,0) {$i$};
+  \node (a2) at (0,-0.6) {$i+1$};
+  \node (a3) at (0,-1.2) {$\vdots$};
+  \node (a4) at (0,-1.8) {$j-1$};
+  \node (a5) at (0,-2.4) {$j$};
+  \node (b1) at (2.6,0) {$i+1$};
+  \node (b2) at (2.6,-0.6) {$\vdots$};
+  \node (b3) at (2.6,-1.2) {$j-1$};
+  \node (b4) at (2.6,-1.8) {$j$};
+  \node (b5) at (2.6,-2.4) {$i$};
+  \node (c1) at (5.2,0) {$j$};
+  \node (c2) at (5.2,-0.6) {$i+1$};
+  \node (c3) at (5.2,-1.2) {$\vdots$};
+  \node (c4) at (5.2,-1.8) {$j-1$};
+  \node (c5) at (5.2,-2.4) {$i$};
+  \draw[->] (0.45,-1.5) -- (2.1,-1.5);
+  \draw[->] (3.1,-1.5) -- (4.75,-1.5);
+\end{tikzpicture}
+\end{center}
+\[
+\Rightarrow|B|=(-1)^{2(j-i)-1}|A|=-|A|.
+\]
+\end{proof}
+
+\begin{proposition}[性质 5]
+若 $|A|$ 的两行成比例（相等），则 $|A|=0$。
+\end{proposition}
+
+\begin{proof}
+\[
+|A|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+ca_{j1} & ca_{j2} & \cdots & ca_{jn}\\
+\vdots & \vdots & & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+\overset{\text{性质 3}}{=}c
+\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+a_{j1} & a_{j2} & \cdots & a_{jn}\\
+\vdots & \vdots & & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+\]
+% 原稿此式左侧标注行号 i、j
+设 $|A|$ 的第 $i$ 行 $=$ 第 $j$ 行。
+
+对调第 $i$ 行与第 $j$ 行
+\[
+|A|\overset{\text{性质 4}}{=}-|A|\qquad\Rightarrow\qquad |A|=0.
+\]
+\end{proof}
+
+\begin{proposition}[性质 6（拆分）]
+\[
+\resizebox{0.98\linewidth}{!}{$\displaystyle
+|C|=\underbrace{\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\cdots & & & \cdots\\
+a_{r1}+b_{r1} & a_{r2}+b_{r2} & \cdots & a_{rn}+b_{rn}\\
+\cdots & & & \cdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}}_{C\ \text{余子式 }Q_{ij}}
+=\underbrace{\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\cdots & & & \cdots\\
+a_{r1} & a_{r2} & \cdots & a_{rn}\\
+\cdots & & & \cdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}}_{A\ \text{余子式 }M_{ij}}
++\underbrace{\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+\cdots & & & \cdots\\
+b_{r1} & b_{r2} & \cdots & b_{rn}\\
+\cdots & & & \cdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}}_{B\ \text{余子式 }N_{ij}}$}
+\]
+\end{proposition}
+
+\begin{proof}
+当 $n=1$ 时，$|a_{11}+b_{11}|=|a_{11}|+|b_{11}|$。
+
+设结论对 $n-1$ 阶行列式成立，现证 $n$ 阶的情形。
+\[
+|C|=a_{11}Q_{11}-a_{21}Q_{21}+\cdots+(-1)^{r+1}(a_{r1}+b_{r1})Q_{r1}+\cdots+(-1)^{n+1}a_{n1}Q_{n1}.
+\]
+当 $k\ne r$ 时，$Q_{k1},M_{k1},N_{k1}$ 满足性质 6 的条件，由归纳假设
+\[
+Q_{k1}=M_{k1}+N_{k1}\ (\forall k\ne r),\qquad Q_{r1}=M_{r1}=N_{r1}.
+\]
+于是
+\begin{align*}
+|C|&=\Big(a_{11}M_{11}-a_{21}M_{21}+\cdots+(-1)^{r+1}a_{r1}M_{r1}+\cdots+(-1)^{n+1}a_{n1}M_{n1}\Big)\\
+&\quad+\Big(a_{11}N_{11}-a_{21}N_{21}+\cdots+(-1)^{r+1}b_{r1}N_{r1}+\cdots+(-1)^{n+1}a_{n1}N_{n1}\Big)\\
+&=|A|+|B|.
+\end{align*}
+\end{proof}
+
+% ===== 原稿 PDF 第 10 页 =====
+% 性质 7、节标题块「5-6 n阶行列式(下) / 行列式的展开与转置」、性质 5（列）及 Case 1、Case 2
+
+\begin{proposition}[性质 7]
+将行列式的一列乘以常数 $c$ 加到另一列上，行列式的值不变。
+\end{proposition}
+% 原稿叙述作「列」，但下面的图示是对第 j 行作行变换
+
+\[
+\resizebox{0.98\linewidth}{!}{$\displaystyle
+\underbrace{\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+a_{j1}+ca_{i1} & a_{j2}+ca_{i2} & \cdots & a_{jn}+ca_{in}\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}}_{B}
+=\underbrace{\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+a_{j1} & a_{j2} & \cdots & a_{jn}\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}}_{A}$}
+\]
+
+\begin{proof}
+对第 $j$ 行拆分
+\[
+\resizebox{0.98\linewidth}{!}{$\displaystyle
+|B|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+a_{j1} & a_{j2} & \cdots & a_{jn}\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
++\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{i1} & a_{i2} & \cdots & a_{in}\\
+ca_{i1} & ca_{i2} & \cdots & ca_{in}\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}=|A|$}
+\]
+\end{proof}
+
+\section{\texorpdfstring{$n$}{n} 阶行列式（下）}
+% 原稿此处有带灰底方框的节标题块：「5-6　n阶行列式(下)／行列式的展开与转置」
+
+\begin{proposition}[性质 5]
+若 $|A|$ 有两列成比例（相等），则 $|A|=0$。
+\end{proposition}
+
+\begin{proof}
+对阶数 $n$ 进行归纳，$n=2$ 时成立。
+
+设 $n-1$ 阶结论成立，现证 $n$ 阶情形。
+
+\textbf{Case 1} 相等两列都不是第 $1$ 列。
+\[
+|A|=a_{11}M_{11}-a_{21}M_{21}+\cdots+(-1)^{n+1}a_{n1}M_{n1}.
+\]
+$\forall i$，$M_{i1}$ 都有两列相等，由归纳假设 $M_{i1}=0\ (\forall i)$。
+
+\textbf{Case 2} 设第 $1$ 列与第 $r$ 列相等。由 $|A|$ 的定义，不妨设 $|A|$ 的第 $1$ 列不全为 $0$，如 $a_{s1}\ne 0$。
+\begin{center}
+\begin{tikzpicture}[>=Stealth,every node/.style={inner sep=1.5pt}]
+  \matrix (A) [matrix of math nodes,row sep=2pt,column sep=5pt,
+      left delimiter={|},right delimiter={|}] {
+    a_{11} & \cdots & a_{1r} & \cdots & a_{1n}\\
+    \vdots &        & \vdots &        & \vdots\\
+    a_{s1} & \cdots & a_{sr} & \cdots & a_{sn}\\
+    \vdots &        & \vdots &        & \vdots\\
+    a_{n1} & \cdots & a_{nr} & \cdots & a_{nn}\\
+  };
+  \node[above=0pt] at (A-1-1.north) {$1$};
+  \node[above=0pt] at (A-1-3.north) {$r$};
+  \node[anchor=east] (m1) at ([xshift=-6mm]A-1-1.west) {$-\frac{a_{11}}{a_{s1}}$};
+  \node[anchor=east] (m3) at ([xshift=-6mm]A-3-1.west) {$a_{s1}\ne 0$};
+  \node[anchor=east] (m5) at ([xshift=-6mm]A-5-1.west) {$-\frac{a_{n1}}{a_{s1}}$};
+  \node[anchor=east] at ([xshift=-5mm]m1.west) {$|A|=$};
+  \matrix (C) [matrix of math nodes,row sep=2pt,column sep=5pt,anchor=west,
+      left delimiter={|},right delimiter={|}] at ([xshift=4cm]A.east) {
+    0 & \cdots & 0 & \cdots & *\\
+    \vdots & & \vdots & & \vdots\\
+    a_{s1} & \cdots & a_{s1} & \cdots & *\\
+    \vdots & & \vdots & & \vdots\\
+    0 & \cdots & 0 & \cdots & *\\
+  };
+  \node[above=0pt] at (C-1-1.north) {$1$};
+  \node[above=0pt] at (C-1-3.north) {$r$};
+  \node[anchor=east] at ([xshift=-4mm]C.west) {$|C|=$};
+  \draw[->] ([xshift=5mm]A.east) -- node[above,font=\small,inner sep=2pt] {性质 7} ([xshift=-1.5cm]C.west);
+\end{tikzpicture}
+\end{center}
+% 原稿左侧标注的系数为 -a_{11}/a_{s1}、-a_{n1}/a_{s1}（对 i≠s 的第 i 行加上 -a_{i1}/a_{s1} 倍第 s 行）
+% 本页在此结束，结论「由性质 7 ⇒ |A| = |C| = (-1)^{s+1}a_{s1}Q_{s1} = 0」见下页
+\end{proof}

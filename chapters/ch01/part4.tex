@@ -1,0 +1,420 @@
+% ===== 原稿 PDF 第 21 页 =====
+% 承接上一页（PDF 第 20 页）未完的证明
+\textcircled{2} 反证法，设 $(k_2,k_1,\cdots,k_n)=(j_2,j_1,\cdots,j_n)$
+则 $(k_1,k_2,\cdots,k_n)=(j_1,j_2,\cdots,j_n)$，矛盾！
+
+% 原稿编号：命题 6
+\begin{proposition}
+设 $(k_1,k_2,\cdots,k_n)\in S_n$，则 $(k_1,k_2,\cdots,k_n)$ 经过
+$N(k_1,k_2,\cdots,k_n)$ 次相邻对换可变为常序排列 $(1,2,\cdots,n)$。
+\end{proposition}
+
+\begin{proof}
+$n=1$ 平凡。设 $n-1$ 结论成立，下证 $n$ 的情形。
+
+下设 $k_i=n$，则
+\begin{center}
+\begin{tikzpicture}[>=Stealth, font=\footnotesize, xscale=0.94, yscale=1.0]
+  \node (A) at (0,0) {$(k_1,\cdots,k_{i-1},k_i=n,k_{i+1},\cdots,k_n)$};
+  \node (B) at (0,-2.0) {$(k_1,\cdots,k_{i-1},k_{i+1},\cdots,k_n,n)$};
+  \node (C) at (9.4,0) {$(1,2,\cdots,n)$};
+  \node (D) at (9.4,-2.0) {$(1,2,\cdots,n-1,n)$};
+  \draw[->] (A) -- (B) node[midway,left] {$(n-i)$ 次相邻对换};
+  \draw[->] (B) -- (D) node[midway,above,align=center]
+    {$N(k_1,\cdots,k_{i-1},k_{i+1},\cdots,k_n)$\\次相邻对换};
+  \draw[->] (A.north) .. controls (3.0,1.5) and (7.0,1.5) .. (C.north)
+    node[midway,above] {$N(k_1,k_2,\cdots,k_n)$ 次相邻对换};
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}[label=\arabic*°,leftmargin=2.2em,itemsep=0.15em]
+  \item $(k_1,\cdots,k_{i-1},k_{i+1},\cdots,k_n)\in S_{n-1}$；
+  \item $N(k_1,\cdots,k_i,\cdots,k_n)
+        =N(k_1,\cdots,k_{i-1},k_{i+1},\cdots,k_n)+n-i$。
+\end{enumerate}
+由归纳假设，$(k_1,\cdots,k_{i-1},k_{i+1},\cdots,k_n)$ 经过
+$N(k_1,\cdots,k_{i-1},k_{i+1},\cdots,k_n)$ 次相邻对换可变为 $(1,2,\cdots,n-1)$。
+\end{proof}
+
+% 原稿编号：例 2
+\begin{example}
+$N(\overset{3}{4},\overset{0}{1},\overset{1}{3},\overset{1}{5},\overset{0}{2})=5$。
+\[
+(4,1,3,5,2)\longrightarrow(4,1,3,2,5)\longrightarrow(1,3,2,4,5)\longrightarrow(1,2,3,4,5)
+\]
+\end{example}
+
+将三阶行列式按第一列拆分：
+\[
+\begin{vmatrix}
+a_{11}&a_{12}&a_{13}\\
+a_{21}&a_{22}&a_{23}\\
+a_{31}&a_{32}&a_{33}
+\end{vmatrix}
+=
+\begin{vmatrix}
+a_{11}&a_{12}&a_{13}\\
+0&a_{22}&a_{23}\\
+0&a_{32}&a_{33}
+\end{vmatrix}
++
+\begin{vmatrix}
+0&a_{12}&a_{13}\\
+a_{21}&a_{22}&a_{23}\\
+0&a_{32}&a_{33}
+\end{vmatrix}
++
+\begin{vmatrix}
+0&a_{12}&a_{13}\\
+0&a_{22}&a_{23}\\
+a_{31}&a_{32}&a_{33}
+\end{vmatrix}
+\qquad(\text{拆分})
+\]
+% 原稿此处把上式右端的行列式再按第二、三列逐列拆分，共 3^3=27 项，
+% 并在每一项右侧标出其值（0 或 ±1）。因字迹重叠无法逐格辨认，这里按同一思路写出完整推导。
+于是再拆第二、三列。记 $\varepsilon_1,\varepsilon_2,\varepsilon_3$ 为标准单位向量组，则
+\[
+|A|=\sum_{i,j,k=1}^{3}a_{i1}a_{j2}a_{k3}\left|\varepsilon_i,\varepsilon_j,\varepsilon_k\right|.
+\]
+当 $\{i,j,k\}=\{1,2,3\}$ 时 $\left|\varepsilon_i,\varepsilon_j,\varepsilon_k\right|=(-1)^{N(i,j,k)}$；
+否则其中两列相同，行列式为 $0$。故 $27$ 项中只有 $3!=6$ 项非零：
+\begin{align*}
+|A|={}&a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\
+&-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}.
+\end{align*}
+（原稿在此处旁注 $(1,3,2)\to(1,2,3)$，即用一次对换把逆序排列化为常序排列，从而定出该项的符号。）
+这正是下面定理~\ref{thm:7} 在 $n=3$ 时的展开式。
+
+% 原稿编号：定理 7
+\begin{theorem}\label{thm:7}
+设 $|A|$ 为 $n$ 阶行列式，则
+\[
+|A|=\sum_{(k_1,k_2,\cdots,k_n)\in S_n}
+(-1)^{N(k_1,k_2,\cdots,k_n)}
+\underbrace{a_{k_11}a_{k_22}\cdots a_{k_nn}}_{\text{单项}}
+\]
+取正号 $\frac12 n!$ 个，取负号 $\frac12 n!$ 个。
+\end{theorem}
+
+\begin{proof}
+设 $|A|=|\alpha_1,\alpha_2,\cdots,\alpha_n|$，
+\[
+\alpha_j=\begin{pmatrix}a_{1j}\\a_{2j}\\\vdots\\a_{nj}\end{pmatrix}.
+\]
+令 $\varepsilon_i=(0,\cdots,0,1,0,\cdots,0)^{T}$
+（第 $i$ 个分量为 $1$，其余为 $0$），$1\le i\le n$。
+
+% ===== 原稿 PDF 第 22 页 =====
+定义：
+\[
+a\varepsilon_i+b\varepsilon_j=
+\begin{cases}
+(0,\cdots,0,\overset{i}{a},0,\cdots,0,\overset{j}{b},0,\cdots,0)^{T},
+  & \text{若 } i<j,\\[8pt]
+(0,\cdots,0,\overset{i}{a+b},0,\cdots,0)^{T},
+  & \text{若 } i=j.
+\end{cases}
+\]
+于是
+\[
+\alpha_j=\begin{pmatrix}a_{1j}\\a_{2j}\\\vdots\\a_{nj}\end{pmatrix}
+=\begin{pmatrix}a_{1j}\\0\\\vdots\\0\end{pmatrix}
++\begin{pmatrix}0\\a_{2j}\\\vdots\\0\end{pmatrix}
++\cdots+
+\begin{pmatrix}0\\0\\\vdots\\a_{nj}\end{pmatrix}
+=a_{1j}\varepsilon_1+a_{2j}\varepsilon_2+\cdots+a_{nj}\varepsilon_n,
+\]
+从而
+\begin{align*}
+|A|&=\left|\sum_{i=1}^n a_{i1}\varepsilon_i,\alpha_2,\cdots,\alpha_n\right|
+\xrightarrow{\ \text{拆分}\ }
+\sum_{i=1}^n\left|a_{i1}\varepsilon_i,\alpha_2,\cdots,\alpha_n\right|
+\xrightarrow{\ \text{性质}\ }
+\sum_{i=1}^n a_{i1}\left|\varepsilon_i,\alpha_2,\cdots,\alpha_n\right|\\
+&=\sum_{i=1}^n a_{i1}\left|\varepsilon_i,\sum_{k=1}^n a_{k2}\varepsilon_k,\alpha_3,\cdots,\alpha_n\right|
+=\sum_{i=1}^n\sum_{k=1}^n a_{i1}a_{k2}
+\left|\varepsilon_i,\varepsilon_k,\alpha_3,\cdots,\alpha_n\right|\\
+&\cdots=\sum_{1\le k_1,k_2,\cdots,k_n\le n}
+a_{k_11}a_{k_22}\cdots a_{k_nn}
+\left|\varepsilon_{k_1},\varepsilon_{k_2},\cdots,\varepsilon_{k_n}\right|.
+\end{align*}
+若 $k_i=k_j\ (i\ne j)$，则
+$\left|\varepsilon_{k_1},\varepsilon_{k_2},\cdots,\varepsilon_{k_n}\right|=0$，故
+\begin{equation}
+|A|=\sum_{(k_1,k_2,\cdots,k_n)\in S_n}
+a_{k_11}a_{k_22}\cdots a_{k_nn}
+\left|\varepsilon_{k_1},\varepsilon_{k_2},\cdots,\varepsilon_{k_n}\right|.
+\tag{$\star$}
+\end{equation}
+对 $(\star)$ 中的每一项，由命题 6 有
+\[
+(k_1,k_2,\cdots,k_n)
+\xrightarrow{\ N(k_1,\cdots,k_n)\ \text{次相邻对换}\ }
+(1,2,\cdots,n),
+\]
+而\;
+$\left|\varepsilon_{k_1},\varepsilon_{k_2},\cdots,\varepsilon_{k_n}\right|
+\xrightarrow{\ \text{相邻对换}\ }
+\left|\varepsilon_1,\varepsilon_2,\cdots,\varepsilon_n\right|
+=\begin{vmatrix}
+1&0&\cdots&0\\
+0&1&\cdots&0\\
+\vdots&\vdots&\ddots&\vdots\\
+0&0&\cdots&1
+\end{vmatrix}=1$，
+故
+\[
+\Longrightarrow\quad
+\left|\varepsilon_{k_1},\varepsilon_{k_2},\cdots,\varepsilon_{k_n}\right|
+=(-1)^{N(k_1,k_2,\cdots,k_n)}.
+\]
+代入 $(\star)$ 即得定理~\ref{thm:7}。
+\end{proof}
+
+\[
+\textbf{递归定义}\ \longrightarrow\ \textbf{性质}\ \longrightarrow\ \textbf{组合定义}
+\]
+\[
+\textbf{组合定义}\ \longrightarrow\ \textbf{性质}\ \longrightarrow\ \textbf{递归定义}
+\qquad(\text{出发点})
+\]
+
+% 原稿编号：引理 8
+\begin{lemma}\label{lem:8}
+设 $(i_1,i_2,\cdots,i_n),(j_1,j_2,\cdots,j_n)\in S_n$，则
+$a_{1i_1}a_{2i_2}\cdots a_{ni_n}$ 在 $|A|$ 中符号为
+\[
+(-1)^{N(i_1,\cdots,i_n)+N(j_1,\cdots,j_n)}.
+\]
+\end{lemma}
+
+\begin{proof}
+考虑
+\begin{center}
+\begin{tikzpicture}[>=Stealth, font=\small]
+  \node (J) at (0,0) {$(j_1,j_2,\cdots,j_n)$};
+  \node (O) at (7.0,0) {$(1,2,\cdots,n)$};
+  \node (I) at (0,-1.9) {$(i_1,i_2,\cdots,i_n)$};
+  \node (K) at (7.0,-1.9) {$(k_1,k_2,\cdots,k_n)$};
+  \draw[->] (J) -- (O) node[midway,above,align=center]
+    {$N(j_1,\cdots,j_n)$ 次\\相邻对换};
+  \draw[->] (I) -- (K);
+  \draw[<->] ($(J)+(0,-0.4)$) -- ($(I)+(0,0.45)$);
+  \draw[<->] ($(O)+(0,-0.4)$) -- ($(K)+(0,0.45)$);
+\end{tikzpicture}
+\end{center}
+于是
+\[
+a_{1i_1}a_{2i_2}\cdots a_{ni_n}=a_{k_11}a_{k_22}\cdots a_{k_nn},
+\]
+而由定理~\ref{thm:7}，符号为 $(-1)^{N(k_1,\cdots,k_n)}$。
+
+% ===== 原稿 PDF 第 23 页 =====
+$N(i_1,i_2,\cdots,i_n)$ 的奇偶性通过 $N(j_1,\cdots,j_n)$ 次改变后与
+$N(k_1,k_2,\cdots,k_n)$ 的奇偶性相同，即
+\[
+N(i_1,\cdots,i_n)+N(j_1,\cdots,j_n)\equiv N(k_1,\cdots,k_n)\pmod 2,
+\]
+即
+\[
+(-1)^{N(i_1,\cdots,i_n)+N(j_1,\cdots,j_n)}=(-1)^{N(k_1,\cdots,k_n)}.
+\]
+故引理~\ref{lem:8} 成立。
+\end{proof}
+
+% 原稿编号：推论 9
+\begin{corollary}
+\[
+|A|=\sum_{(k_1,\cdots,k_n)\in S_n}
+(-1)^{N(k_1,\cdots,k_n)}a_{1k_1}a_{2k_2}\cdots a_{nk_n}.
+\]
+\end{corollary}
+
+\begin{proof}
+$a_{1k_1}a_{2k_2}\cdots a_{nk_n}$ 是 $|A|$ 的单项，其符号（引理~\ref{lem:8}）为
+\[
+(-1)^{N(1,2,\cdots,n)+N(k_1,\cdots,k_n)}=(-1)^{N(k_1,\cdots,k_n)}.
+\]
+右边单项 $n!$，左边 $=$ 右边。
+\end{proof}
+
+% 原稿此处出现带灰底的节标题块：“11-12\quad Laplace 定理（上）\quad Laplace 定理（下）”
+\section{Laplace 定理}
+
+% 原稿编号：定义 1
+\begin{definition}[$k$ 阶子式]
+设 $|A|$ 为 $n$ 阶行列式，$1\le k\le n$。
+
+选定 $1\le i_1<i_2<\cdots<i_k\le n$，$1\le j_1<j_2<\cdots<j_k\le n$。
+将 $|A|$ 的第 $i_1$ 行，第 $i_2$ 行，$\cdots$，第 $i_k$ 行与第 $j_1$ 列，第 $j_2$ 列，
+$\cdots$，第 $j_k$ 列交叉点上的元素按原来的顺序构成一个 $k$ 阶行列式，
+称为 $|A|$ 的\textbf{$k$ 阶子式}，记为
+\[
+A\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}
+=\begin{vmatrix}
+a_{i_1j_1}&a_{i_1j_2}&\cdots&a_{i_1j_k}\\
+a_{i_2j_1}&a_{i_2j_2}&\cdots&a_{i_2j_k}\\
+\cdots&\cdots&&\cdots\\
+a_{i_kj_1}&a_{i_kj_2}&\cdots&a_{i_kj_k}
+\end{vmatrix}.
+\]
+删去第 $i_1,i_2,\cdots,i_k$ 行，第 $j_1,j_2,\cdots,j_k$ 列，剩余元素按原来顺序构成一个
+$(n-k)$ 阶子式，称为前面 $k$ 阶子式的\textbf{余子式}，记为
+$M\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}$。
+
+\textbf{代数余子式}
+\[
+\hat{A}\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}
+=(-1)^{i_1+i_2+\cdots+i_k+j_1+j_2+\cdots+j_k}
+M\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}.
+\]
+\end{definition}
+
+% 原稿编号：定理 2
+\begin{theorem}[Laplace 定理]
+$|A|$ 中给定 $k$ 行（列），则包含于这 $k$ 行（列）中所有 $k$ 阶子式与其代数余子式
+乘积之和等于 $|A|$。
+
+给定 $1\le i_1<i_2<\cdots<i_k\le n$，则
+\begin{equation}
+|A|=\sum_{1\le j_1<j_2<\cdots<j_k\le n}
+A\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}
+\hat{A}\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}.
+\tag{$\star$}
+\end{equation}
+\end{theorem}
+
+% ===== 原稿 PDF 第 24 页 =====
+给定 $1\le j_1<j_2<\cdots<j_k\le n$，则
+\[
+|A|=\sum_{1\le j_1<j_2<\cdots<j_k\le n}
+A\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}
+\hat{A}\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}.
+\]
+
+% 原稿编号：例 3
+\begin{example}
+\[
+|A|=\begin{vmatrix}
+1&2&-1&3\\
+7&0&5&2\\
+-2&4&6&1\\
+2&3&1&4
+\end{vmatrix}
+\]
+\begin{align*}
+A\begin{pmatrix}1&2\\1&2\end{pmatrix}&=\begin{vmatrix}1&2\\7&0\end{vmatrix},&
+A\begin{pmatrix}1&2\\1&3\end{pmatrix}&=\begin{vmatrix}1&-1\\7&5\end{vmatrix},&
+A\begin{pmatrix}1&2\\1&4\end{pmatrix}&=\begin{vmatrix}1&3\\7&2\end{vmatrix},\\
+\hat{A}\begin{pmatrix}1&2\\1&2\end{pmatrix}&=\begin{vmatrix}6&1\\1&4\end{vmatrix},&
+\hat{A}\begin{pmatrix}1&2\\1&3\end{pmatrix}&=-\begin{vmatrix}4&1\\3&4\end{vmatrix},&
+\hat{A}\begin{pmatrix}1&2\\1&4\end{pmatrix}&=\begin{vmatrix}4&6\\3&1\end{vmatrix},\\
+A\begin{pmatrix}1&2\\2&3\end{pmatrix}&=\begin{vmatrix}2&-1\\0&5\end{vmatrix},&
+A\begin{pmatrix}1&2\\2&4\end{pmatrix}&=\begin{vmatrix}2&3\\0&2\end{vmatrix},&
+A\begin{pmatrix}1&2\\3&4\end{pmatrix}&=\begin{vmatrix}-1&3\\5&2\end{vmatrix},\\
+\hat{A}\begin{pmatrix}1&2\\2&3\end{pmatrix}&=\begin{vmatrix}-2&1\\2&4\end{vmatrix},&
+\hat{A}\begin{pmatrix}1&2\\2&4\end{pmatrix}&=-\begin{vmatrix}-2&6\\2&1\end{vmatrix},&
+\hat{A}\begin{pmatrix}1&2\\3&4\end{pmatrix}&=\begin{vmatrix}-2&4\\2&3\end{vmatrix}.
+\end{align*}
+% 原稿此处 $\hat{A}\binom{1\ 2}{2\ 4}$ 漏写负号，求和式中第 4、5 项第二个因子均误作
+% $\begin{vmatrix}-2&6\\2&1\end{vmatrix}$；下面按数学正确形式书写。
+于是
+\begin{align*}
+|A|={}&
+\begin{vmatrix}1&2\\7&0\end{vmatrix}
+\begin{vmatrix}6&1\\1&4\end{vmatrix}
+-\begin{vmatrix}1&-1\\7&5\end{vmatrix}
+\begin{vmatrix}4&1\\3&4\end{vmatrix}
++\begin{vmatrix}1&3\\7&2\end{vmatrix}
+\begin{vmatrix}4&6\\3&1\end{vmatrix}\\
+&+\begin{vmatrix}2&-1\\0&5\end{vmatrix}
+\begin{vmatrix}-2&1\\2&4\end{vmatrix}
++\begin{vmatrix}2&3\\0&2\end{vmatrix}
+\left(-\begin{vmatrix}-2&6\\2&1\end{vmatrix}\right)
++\begin{vmatrix}-1&3\\5&2\end{vmatrix}
+\begin{vmatrix}-2&4\\2&3\end{vmatrix}\\
+&=-18.
+\end{align*}\end{example}
+
+\textbf{单项个数}
+
+$|A|$：$n!$\qquad $(\star)$ 右边：$C_n^k\cdot k!\cdot(n-k)!$
+
+\textbf{只要证明}
+\begin{enumerate}[label=(\arabic*),leftmargin=3em,itemsep=0.1em]
+\item $(\star)$ 式右边的单项都是 $|A|$ 的单项且符号一致；
+\item $(\star)$ 式右边展开单项互不相同。
+\end{enumerate}
+
+% 原稿编号：引理 4
+\begin{lemma}\label{lem:4}
+$(\star)$ 式右边展开的单项都是 $|A|$ 中单项且符号一致。
+\end{lemma}
+
+\begin{proof}
+\textbf{Case 1}\quad $i_1=1$，$i_2=2$，$\cdots$，$i_k=k$；\;
+$j_1=1$，$j_2=2$，$\cdots$，$j_k=k$。
+
+此时
+\[
+|A|=\begin{vmatrix}A_1&*\\ *&A_2\end{vmatrix},\qquad
+|A_1|=A\begin{pmatrix}1&2&\cdots&k\\1&2&\cdots&k\end{pmatrix},\qquad
+|A_2|=\hat{A}\begin{pmatrix}1&2&\cdots&k\\1&2&\cdots&k\end{pmatrix}.
+\]
+
+% ===== 原稿 PDF 第 25 页 =====
+$|A_1|$ 中任一单项
+$(-1)^{N(n_1,\cdots,n_k)}a_{n_11}a_{n_22}\cdots a_{n_kk}$，
+其中 $(n_1,\cdots,n_k)$ 是 $(1,2,\cdots,k)$ 的全排列。
+
+$|A_2|$ 中任一单项
+$(-1)^{N(n_{k+1},\cdots,n_n)}a_{n_{k+1},k+1}\cdots a_{n_nn}$，
+其中 $(n_{k+1},\cdots,n_n)$ 是 $(k+1,\cdots,n)$ 的全排列。
+
+则 $|A_1|$，$|A_2|$ 中任一单项具有形式
+\[
+(-1)^{\delta}a_{n_11}\cdots a_{n_kk}a_{n_{k+1},k+1}\cdots a_{n_nn},
+\]
+其中 $(n_1,\cdots,n_k,n_{k+1},\cdots,n_n)$ 是 $(1,2,\cdots,n)$ 的全排列，
+\[
+\delta=N(n_1,n_2,\cdots,n_k)+N(n_{k+1},\cdots,n_n)
+=N(n_1,\cdots,n_k,n_{k+1},\cdots,n_n).
+\]
+即 $|A_1|\cdot|A_2|$ 中任一单项为 $|A|$ 的单项且符号一致。
+
+\textbf{Case 2}\quad 一般地，将 $i_1$ 行经过 $i_1-1$ 次相邻对换可变为第 $1$ 行，
+\begin{align*}
+\text{第 } i_2 \text{ 行}&\ \sim\ i_2-2 \text{ 次}\ \sim\ \text{第 } 2 \text{ 行}\\
+&\vdots\\
+\text{第 } i_k \text{ 行}&\ \sim\ i_k-k \text{ 次}\ \sim\ \text{第 } k \text{ 行}\\
+\text{第 } j_1 \text{ 列}&\ \sim\ j_1-1 \text{ 次}\ \sim\ \text{第 } 1 \text{ 列}\\
+\text{第 } j_2 \text{ 列}&\ \sim\ j_2-2 \text{ 次}\ \sim\ \text{第 } 2 \text{ 列}\\
+\text{第 } j_k \text{ 列}&\ \sim\ j_k-k \text{ 次}\ \sim\ \text{第 } k \text{ 列}
+\end{align*}
+最后经过
+$i_1+\cdots+i_k+j_1+\cdots+j_k-k(k+1)$ 次相邻行、列对换，
+即可将一般情形化为 Case 1 的情形：
+\[
+|A|\ \longrightarrow\
+|C|=\begin{vmatrix}D&*\\ *&B\end{vmatrix},
+\]
+其中 $|D|=A\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}$，\;
+$B=M\begin{pmatrix}i_1&i_2&\cdots&i_k\\j_1&j_2&\cdots&j_k\end{pmatrix}$。
+
+（相邻对换不改变余指标顺序。）
+
+由 Case 1 知，$|D|\cdot|B|$ 中任一单项都是 $|C|$ 中单项且符号一致。
+
+记 $p=i_1+\cdots+i_k$，$q=j_1+j_2+\cdots+j_k$，则
+\[
+|C|=(-1)^{p+q}\cdot|A|.
+\]
+于是
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+A\begin{pmatrix}i_1&\cdots&i_k\\j_1&\cdots&j_k\end{pmatrix}
+\hat{A}\begin{pmatrix}i_1&\cdots&i_k\\j_1&\cdots&j_k\end{pmatrix}
+=(-1)^{p+q}\cdot|D|\cdot|B|$}
+\]
+中任一单项是 $(-1)^{p+q}\cdot|C|=|A|$ 中单项且符号一致。
+\end{proof}

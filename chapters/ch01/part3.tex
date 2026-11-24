@@ -1,0 +1,505 @@
+% 仅在超出页宽时缩放，避免窄公式被放大
+\providecommand{\fitmath}[1]{\resizebox{\ifdim\width>\linewidth \linewidth\else\width\fi}{!}{#1}}
+
+% ===== 原稿 PDF 第 16 页 =====
+
+$(*)$ 的第 $k$ 个方程：
+\[
+\sum_{j=1}^{n}a_{kj}x_j=b_k,\qquad \forall k\ge 1.
+\]
+\begin{align*}
+\sum_{j=1}^{n}a_{kj}x_j
+&=\sum_{j=1}^{n}\Bigl(a_{kj}\frac{1}{|A|}\sum_{i=1}^{n}b_iA_{ij}\Bigr)
+=\frac{1}{|A|}\sum_{j=1}^{n}\sum_{i=1}^{n}a_{kj}b_iA_{ij}\\
+&=\frac{1}{|A|}\sum_{i=1}^{n}b_i\sum_{j=1}^{n}a_{kj}A_{ij}
+=\frac{1}{|A|}\sum_{i=1}^{n}b_i\,\delta_{ki}|A|=b_k .
+\end{align*}
+
+\begin{example}
+\[
+|A|=\begin{vmatrix}
+a_{11}&\cdots&a_{1s}&\cdots&a_{1n}\\
+0&\cdots&a_{rs}&\cdots&0\\
+\vdots& &\vdots& &\vdots\\
+a_{n1}&\cdots&a_{ns}&\cdots&a_{nn}
+\end{vmatrix}
+=a_{rs}A_{rs}.
+\]
+% 原稿在第二行左端标 $r$，示意按第 $r$ 行展开
+\end{example}
+
+\textbf{降阶法}\quad 计算行列式的原则：利用行列式的性质，将行列式的某一行或某一列化出尽可能多的零，
+再按这一行或这一列展开进行降阶处理。
+
+\textbf{性质3}\quad 若行列式的某一行（列）有公因子 $c$，则可将 $c$ 提取出来做乘法。
+
+\textbf{性质7}\quad 行列式的某一行（列）乘以常数 $c$ 加到另一行（列）上，行列式的值不改变。
+
+\begin{example}
+\begin{align*}
+|A|&=\begin{vmatrix}
+1&0&2&1\\
+2&\boxed{1}&1&0\\
+1&0&0&3\\
+-1&0&2&1
+\end{vmatrix}
+\xrightarrow{\ \text{按第二列展开}\ }
+(-1)^{2+2}\begin{vmatrix}
+1&2&1\\
+1&0&3\\
+-1&2&1
+\end{vmatrix}\\
+&=\begin{vmatrix}
+1&2&1\\
+0&-2&2\\
+0&4&2
+\end{vmatrix}
+=(-1)^{1+1}\begin{vmatrix}
+-2&2\\
+4&2
+\end{vmatrix}=-12.
+\end{align*}
+% 原稿作 $(-1)^{2+3}$，且末步写作 $(-1)\cdot\begin{vmatrix}-2&2\\4&2\end{vmatrix}=12$
+\end{example}
+
+\begin{example}
+\begin{align*}
+|A|&=\begin{vmatrix}
+7&3&1&-5\\
+2&6&-3&0\\
+3&11&-1&4\\
+-6&5&2&9
+\end{vmatrix}
+\xrightarrow[r_3+r_1]{\ r_2+3r_1,\ r_4-2r_1\ }
+\begin{vmatrix}
+7&3&1&-5\\
+23&15&0&-15\\
+10&14&0&-1\\
+-20&-1&0&19
+\end{vmatrix}\\
+&=\begin{vmatrix}
+23&15&-15\\
+10&14&-1\\
+-20&-1&19
+\end{vmatrix}
+=\begin{vmatrix}
+-277&0&0\\
+-10&13&0\\
+-20&-1&1
+\end{vmatrix}=-3601.
+\end{align*}
+% 原稿末步作 $\begin{vmatrix}-277&0&0\\-10&13&0\\-20&-1&1\end{vmatrix}=-3601$
+% 经核算 $\begin{vmatrix}23&15&-15\\10&14&-1\\-20&-1&19\end{vmatrix}=-505$（即原四阶行列式 $=-505$），原稿此处算术有误
+\end{example}
+
+\begin{example}
+\begin{align*}
+|A|&=\begin{vmatrix}
+3&6&12\\
+2&-3&0\\
+5&1&2
+\end{vmatrix}
+=3\begin{vmatrix}
+1&2&4\\
+2&-3&0\\
+5&1&2
+\end{vmatrix}
+=6\begin{vmatrix}
+1&2&2\\
+2&-3&0\\
+5&1&1
+\end{vmatrix}\\
+&=6\begin{vmatrix}
+-9&0&0\\
+2&-3&0\\
+5&1&1
+\end{vmatrix}
+=6\times(-9)\times(-3)=162.
+\end{align*}
+% 原稿在第二行上方标「3」「2」，即由第一行提出因子 3、由第三列提出因子 2
+\end{example}
+
+数字行列式 $\longrightarrow$ 文字行列式（元素中含未定元）。
+
+降阶法、递推法、求和法、提取因子法、拆分法。
+
+\begin{example}[Vandermonde 行列式]
+\[
+\fitmath{$\displaystyle
+V_n=\begin{vmatrix}
+1&x_1&x_1^2&\cdots&x_1^{n-2}&x_1^{n-1}\\
+1&x_2&x_2^2&\cdots&x_2^{n-2}&x_2^{n-1}\\
+\vdots&\vdots&\vdots& &\vdots&\vdots\\
+1&x_{n-1}&x_{n-1}^2&\cdots&x_{n-1}^{n-2}&x_{n-1}^{n-1}\\
+1&x_n&x_n^2&\cdots&x_n^{n-2}&x_n^{n-1}
+\end{vmatrix}$}
+\]
+% 原稿在末行下方自右向左标注 $(-x_n)$，即依次作列变换 $c_k-x_nc_{k-1}\ (k=n,n-1,\cdots,2)$
+\end{example}
+
+% ===== 原稿 PDF 第 17 页 =====
+
+\[
+\fitmath{$\displaystyle
+=\begin{vmatrix}
+1&x_1-x_n&x_1^2-x_1x_n&\cdots&x_1^{n-2}-x_1^{n-3}x_n&x_1^{n-1}-x_1^{n-2}x_n\\
+1&x_2-x_n&x_2^2-x_2x_n&\cdots&x_2^{n-2}-x_2^{n-3}x_n&x_2^{n-1}-x_2^{n-2}x_n\\
+\cdots\cdots& & & & &\cdots\cdots\\
+1&x_{n-1}-x_n&x_{n-1}^2-x_{n-1}x_n&\cdots&x_{n-1}^{n-2}-x_{n-1}^{n-3}x_n&x_{n-1}^{n-1}-x_{n-1}^{n-2}x_n\\
+1&0&0&\cdots&0&0
+\end{vmatrix}$}
+\]
+
+\[
+\fitmath{$\displaystyle
+=(-1)^{n+1}\begin{vmatrix}
+x_1-x_n&x_1^2-x_1x_n&\cdots&x_1^{n-2}-x_1^{n-3}x_n&x_1^{n-1}-x_1^{n-2}x_n\\
+x_2-x_n&x_2^2-x_2x_n&\cdots&x_2^{n-2}-x_2^{n-3}x_n&x_2^{n-1}-x_2^{n-2}x_n\\
+\cdots\cdots& & & &\cdots\cdots\\
+x_{n-1}-x_n&x_{n-1}^2-x_{n-1}x_n&\cdots&x_{n-1}^{n-2}-x_{n-1}^{n-3}x_n&x_{n-1}^{n-1}-x_{n-1}^{n-2}x_n
+\end{vmatrix}$}
+\]
+% 原稿在各行左端标注 $x_1-x_n,\ x_2-x_n,\ \cdots,\ x_{n-1}-x_n$，即各行依次提出因子 $x_i-x_n$
+
+\[
+\fitmath{$\displaystyle
+=(-1)^{n+1}\cdot(x_1-x_n)(x_2-x_n)\cdots(x_{n-1}-x_n)\cdot
+\begin{vmatrix}
+1&x_1&\cdots&x_1^{n-3}&x_1^{n-2}\\
+1&x_2&\cdots&x_2^{n-3}&x_2^{n-2}\\
+\cdots& & & &\cdots\\
+1&x_{n-1}&\cdots&x_{n-1}^{n-3}&x_{n-1}^{n-2}
+\end{vmatrix}$}
+\]
+
+\[
+\Rightarrow\quad V_n=(x_n-x_1)(x_n-x_2)\cdots(x_n-x_{n-1})\cdot V_{n-1}.
+\]
+
+\[
+\Rightarrow\quad V_n=\prod_{1\le i<j\le n}(x_j-x_i).
+\]
+
+\[
+\tilde{V}_n=\begin{vmatrix}
+x_1^{n-1}&x_1^{n-2}&\cdots&x_1&1\\
+x_2^{n-1}&x_2^{n-2}&\cdots&x_2&1\\
+\vdots& & &\vdots&\vdots\\
+x_n^{n-1}&x_n^{n-2}&\cdots&x_n&1
+\end{vmatrix}
+\]
+% 原稿在此矩阵下方以弧线标出各列的对换关系
+\[
+(n-1)+(n-2)+\cdots+1=\frac{n(n-1)}{2}\ \text{次列对换},
+\]
+\[
+\tilde{V}_n=(-1)^{\frac{1}{2}n(n-1)}\cdot V_n=\prod_{1\le i<j\le n}(x_i-x_j).
+\]
+
+\begin{example}
+\[
+F_n=\begin{vmatrix}
+\lambda&0&0&\cdots&0&a_n\\
+-1&\lambda&0&\cdots&0&a_{n-1}\\
+0&-1&\lambda&\cdots&0&a_{n-2}\\
+\vdots&\vdots&\vdots& &\vdots&\vdots\\
+0&0&0&\cdots&\lambda&a_2\\
+0&0&0&\cdots&-1&\lambda+a_1
+\end{vmatrix}
+\]
+（多项式的友阵的特征多项式）
+% 原稿以虚线框出左上角的 $F_{n-1}$
+
+按第 $1$ 行展开：
+\begin{align*}
+F_n&=\lambda F_{n-1}+(-1)^{1+n}\cdot a_n\cdot(-1)^{n-1}=\lambda F_{n-1}+a_n,
+\qquad F_1=\lambda+a_1\\
+&=\lambda(\lambda F_{n-2}+a_{n-1})+a_n=\lambda^2F_{n-2}+a_{n-1}\lambda+a_n\\
+&=\cdots=\lambda^n+a_1\lambda^{n-1}+\cdots+a_{n-1}\lambda+a_n .
+\end{align*}
+\end{example}
+
+% ===== 原稿 PDF 第 18 页 =====
+
+\begin{example}[求和法]
+\[
+|A|=\begin{vmatrix}
+x&a&a&\cdots&a&a\\
+a&x&a&\cdots&a&a\\
+\cdots&\cdots&\cdots& &\cdots&\cdots\\
+a&a&a&\cdots&x&a\\
+a&a&a&\cdots&a&x
+\end{vmatrix}
+\]
+% 原稿在右侧以竖线括起全部各行并标 (1)，即把其余各行加到第 1 行
+\[
+=\begin{vmatrix}
+x+(n-1)a&x+(n-1)a&x+(n-1)a&\cdots&x+(n-1)a\\
+a&x&a&\cdots&a\\
+\cdots\cdots& & & &\cdots\cdots\\
+a&a&a&\cdots&x
+\end{vmatrix}
+\]
+\[
+=[x+(n-1)a]\begin{vmatrix}
+1&1&1&\cdots&1\\
+a&x&a&\cdots&a\\
+\cdots\cdots& & & &\cdots\cdots\\
+a&a&a&\cdots&x
+\end{vmatrix}
+\]
+% 原稿在此矩阵左侧标 $(-a)$，即把第 1 行的 $-a$ 倍加到其余各行
+\[
+=[x+(n-1)a]\begin{vmatrix}
+1&1&1&\cdots&1\\
+0&x-a&0&\cdots&0\\
+\cdots&\cdots& &\cdots&\cdots\\
+0&0&0&\cdots&x-a
+\end{vmatrix}
+=\bigl(x+(n-1)a\bigr)(x-a)^{n-1}.
+\]
+\end{example}
+
+\begin{example}
+\[
+|A|=\begin{vmatrix}
+x&y&z&w\\
+y&x&w&z\\
+z&w&x&y\\
+w&z&y&x
+\end{vmatrix}
+=\begin{vmatrix}
+x+y+z+w&y&z&w\\
+x+y+z+w&x&w&z\\
+x+y+z+w&w&x&y\\
+x+y+z+w&z&y&x
+\end{vmatrix}
+\]
+\[
+=(x+y+z+w)\begin{vmatrix}
+1&y&z&w\\
+1&x&w&z\\
+1&w&x&y\\
+1&z&y&x
+\end{vmatrix}
+=(x+y+z+w)\begin{vmatrix}
+1&y&z&w\\
+0&x-y&w-z&z-w\\
+0&w-y&x-z&y-w\\
+0&z-y&y-z&x-w
+\end{vmatrix}
+\]
+\[
+=(x+y+z+w)\begin{vmatrix}
+x-y&w-z&z-w\\
+w-y&x-z&y-w\\
+z-y&y-z&x-w
+\end{vmatrix}
+=(x+y+z+w)\begin{vmatrix}
+x+w-y-z&w-z&0\\
+x+w-y-z&x-z&x+y-z-w\\
+0&y-z&x+y-z-w
+\end{vmatrix}
+\]
+\[
+=(x+y+z+w)(x+w-y-z)(x+y-z-w)\begin{vmatrix}
+1&w-z&0\\
+1&x-z&1\\
+0&y-z&1
+\end{vmatrix}
+\]
+\[
+=(x+y+z+w)(x+w-y-z)(x+y-z-w)\begin{vmatrix}
+1&w-z&0\\
+0&x-w&1\\
+0&y-z&1
+\end{vmatrix}
+\]
+\[
+=(x+y+z+w)(x+w-y-z)(x+y-z-w)(x-w-y+z).
+\]
+\end{example}
+
+\begin{example}[拆分法]
+\[
+\begin{vmatrix}
+ax+by&ay+bz&az+bx\\
+ay+bz&az+bx&ax+by\\
+az+bx&ax+by&ay+bz
+\end{vmatrix}
+=(a^3+b^3)\begin{vmatrix}
+x&y&z\\
+y&z&x\\
+z&x&y
+\end{vmatrix}.
+\]
+\end{example}
+
+% ===== 原稿 PDF 第 19 页 =====
+
+\begin{proof}
+\begin{align*}
+&=\begin{vmatrix}
+ax&ay+bz&az+bx\\
+ay&az+bx&ax+by\\
+az&ax+by&ay+bz
+\end{vmatrix}
++\begin{vmatrix}
+by&ay+bz&az+bx\\
+bz&az+bx&ax+by\\
+bx&ax+by&ay+bz
+\end{vmatrix}\\
+&=a^3\begin{vmatrix}
+x&y&z\\
+y&z&x\\
+z&x&y
+\end{vmatrix}
++b^3\begin{vmatrix}
+x&y&z\\
+y&z&x\\
+z&x&y
+\end{vmatrix}
+=(a^3+b^3)\begin{vmatrix}
+x&y&z\\
+y&z&x\\
+z&x&y
+\end{vmatrix}.\qedhere
+\end{align*}
+\end{proof}
+
+\begin{example}
+\begin{align*}
+|A|&=\begin{vmatrix}
+(a+b)^2&c^2&c^2\\
+a^2&(b+c)^2&a^2\\
+b^2&b^2&(c+a)^2
+\end{vmatrix}
+=2abc\,(a+b+c)^3\\
+&=\begin{vmatrix}
+(a+b)^2-c^2&c^2&0\\
+a^2-(b+c)^2&(b+c)^2&a^2-(b+c)^2\\
+0&b^2&(c+a)^2-b^2
+\end{vmatrix}
+=(a+b+c)^2\begin{vmatrix}
+a+b-c&c^2&0\\
+a-b-c&(b+c)^2&a-b-c\\
+0&b^2&a+c-b
+\end{vmatrix}\\
+&=(a+b+c)^2\begin{vmatrix}
+a+b-c&c^2&0\\
+-2b&2bc&-2c\\
+0&b^2&a+c-b
+\end{vmatrix}\\
+&=(a+b+c)^3\begin{vmatrix}
+a+b-c&\dfrac{c}{2}&0\\
+-2b&0&-2c\\
+0&\dfrac{b}{2}&a+c-b
+\end{vmatrix}
+=2abc\,(a+b+c)^3 .
+\end{align*}
+% 原稿在第二步标 $(-1)$（第 1 列、第 3 列各减去第 2 列），在第三步上方标 $\frac{c}{2}$、$\frac{b}{2}$
+\end{example}
+
+\section{行列式的等价定义}
+
+\begin{definition}
+记 $1,2,\cdots,n$ 的全排列全体为 $S_n$。
+\end{definition}
+
+$S_n=n!$。在一个全排列中，指标从小到大为常序排列（只有一个 $1,2,\cdots,n$），
+否则称为逆序排列。若 $j>i$，且 $j$ 排在 $i$ 之前，则称 $(i,j)$ 为一个逆序对。
+
+\begin{sloppypar}
+对全排列 $(k_1,k_2,\cdots,k_n)$，其中逆序对的总个数称为全排列的\textbf{逆序数}，
+记为 $N(k_1,k_2,\cdots,k_n)$。
+\end{sloppypar}
+
+\textbf{逆序数的求法}\quad 设全排列 $(k_1,k_2,\cdots,k_n)$，
+
+看 $k_1$ 后面有几个数比它小，记为 $m_1$ 个，
+
+看 $k_2$ \underline{\hspace{4.5cm}}，记为 $m_2$ 个，
+
+$\vdots$
+
+看 $k_{n-1}$ \underline{\hspace{4.5cm}}，记为 $m_{n-1}$ 个。
+
+% ===== 原稿 PDF 第 20 页 =====
+
+于是
+\[
+N(k_1,k_2,\cdots,k_n)=m_1+m_2+\cdots+m_{n-1}.
+\]
+
+\begin{example}
+求 $N(4,1,3,5,2)$。
+\[
+m_1=3,\qquad m_2=0,\qquad m_3=1,\qquad m_4=1 .
+\]
+% 原稿作 $m_3=2$
+\[
+\Rightarrow\quad N(4,1,3,5,2)=3+0+1+1=5\quad\text{（奇排列）}.
+\]
+\end{example}
+
+\begin{definition}
+若 $N(k_1,k_2,\cdots,k_n)$ 为
+$\begin{cases}\text{偶数}\\[2pt]\text{奇数}\end{cases}$，则称 $(k_1,k_2,\cdots,k_n)$ 为
+$\begin{cases}\text{偶排列}\\[2pt]\text{奇排列}\end{cases}$。
+\end{definition}
+
+\begin{lemma}
+对换全排列 $(k_1,k_2,\cdots,k_n)$ 中任意两个元素 $k_i$ 与 $k_j$，则全排列的奇偶性发生改变。
+\end{lemma}
+
+\begin{proof}
+\textbf{Case 1}\quad 对换两个相邻元素 $k_i,\,k_{i+1}$。
+
+1$^\circ$ 若 $k_i>k_{i+1}$，
+\[
+(k_1\cdots k_{i-1}\ \overset{m_i}{k_i}\ \overset{m_{i+1}}{k_{i+1}}\ k_{i+2}\cdots k_n)
+\;\longrightarrow\;
+(k_1\cdots k_{i-1}\ \overset{m_{i+1}}{k_{i+1}}\ \overset{m_i-1}{k_i}\ k_{i+2}\cdots k_n),
+\]
+逆序数减少了 $1$，奇偶性改变。
+
+2$^\circ$ 若 $k_i<k_{i+1}$，
+\[
+(k_1,\cdots,k_{i-1},\ \overset{m_i}{k_i}\ \overset{m_{i+1}}{k_{i+1}},\ k_{i+2},\cdots,k_n)
+\;\longrightarrow\;
+(k_1,\cdots,k_{i-1},\ \overset{m_i+1}{k_{i+1}}\ \overset{m_{i+1}}{k_i},\ k_{i+2},\cdots,k_n),
+\]
+逆序数增加了 $1$，奇偶性改变。
+
+\textbf{Case 2}\quad 一般地，对换 $k_i$ 与 $k_j$（$i<j$）：
+\[
+\begin{array}{ll}
+(i,\ i+1,\ \cdots,\ j-1,\ j) & (j-i)\ \text{次相邻对换}\\[4pt]
+\downarrow\\[4pt]
+(i,\ \cdots,\ j-1,\ j,\ i) & (j-i-1)\ \text{次相邻对换}\\[4pt]
+\downarrow\\[4pt]
+(j,\ i+1,\ \cdots,\ j-1,\ i) & 2(j-i)-1\ \text{次相邻对换}
+\end{array}
+\]
+由 Case 1 可知，全排列的奇偶性发生改变。
+\end{proof}
+
+\begin{lemma}
+设 $n\ge 2$。在 $S_n$ 中，奇偶排列各占一半。
+\end{lemma}
+
+\begin{proof}
+设有 $P$ 个奇排列，$Q$ 个偶排列。对 $\forall\,(k_1,k_2,\cdots,k_n)\in S_n$，
+对换 $k_1,k_2$：
+\[
+(k_1,k_2,\cdots,k_n)\longrightarrow(k_2,k_1,\cdots,k_n),
+\]
+\[
+\begin{array}{ll}
+P\ \text{奇}\ \longrightarrow\ \text{偶}\ P &\Rightarrow\ P\le Q\\[4pt]
+Q\ \text{偶}\ \longrightarrow\ \text{奇}\ Q &\Rightarrow\ Q\le P
+\end{array}
+\qquad\Rightarrow\quad P=Q .
+\]
+设 $(k_1,k_2,\cdots,k_n)\ne(j_1,j_2,\cdots,j_n)$，则 $(k_2,k_1,\cdots,k_n)\ne(j_2,j_1,\cdots,j_n)$。
+\end{proof}

@@ -1,0 +1,71 @@
+% !TEX program = xelatex
+% 高等代数学 手写笔记 LaTeX 整理
+% 原稿：谢启鸿《高等代数学》手写笔记（纯享护眼版）
+\documentclass[11pt,a4paper,openany]{ctexbook}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{geometry}
+\geometry{left=2.6cm,right=2.6cm,top=2.5cm,bottom=2.5cm}
+
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=black,urlcolor=blue,citecolor=black}
+
+% ---------- 章节样式 ----------
+\ctexset{
+  chapter = {
+    name = {第,章},
+    number = \chinese{chapter},
+    format = \huge\bfseries\centering,
+    beforeskip = 1.2\baselineskip,
+    afterskip = 1.2\baselineskip,
+  },
+  section = {
+    format = \Large\bfseries\raggedright,
+  },
+}
+
+% ---------- 定理环境 ----------
+\newtheorem{definition}{定义}[chapter]
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{proposition}{命题}[chapter]
+\newtheorem{lemma}{引理}[chapter]
+\newtheorem{corollary}{推论}[chapter]
+\newtheorem{example}{例}[chapter]
+\newtheorem{remark}{注}[chapter]
+
+\renewcommand{\proofname}{证明}
+\renewcommand{\qedsymbol}{$\square$}
+
+% 常用记号
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\tr}{tr}
+
+\title{\Huge 高等代数学笔记\\[0.4em]\large —— 手写原稿 LaTeX 整理}
+\author{}
+\date{}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+
+\input{chapters/ch01-determinant}
+
+\end{document}

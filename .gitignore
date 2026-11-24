@@ -1,0 +1,14 @@
+# LaTeX 编译中间文件
+*.aux
+*.log
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+*.lof
+*.lot
+
+# 输出 PDF 由本地编译生成
+main.pdf

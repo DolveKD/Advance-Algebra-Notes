@@ -1,0 +1,185 @@
+% ===== 原稿 PDF 第 26 页 =====
+% 引理5（(*) 式右边展开的单项互不相同）、Laplace 定理的证明、例6、推论7（分块三角行列式）
+
+\begin{lemma}
+\label{lem:5}$(*)$ 式右边展开的单项互不相同。
+\end{lemma}
+
+\begin{proof}
+设
+\begin{align*}
+&1\le i_1<i_2<\cdots<i_k\le n,\qquad 1\le i_{k+1}<\cdots<i_n\le n;\\
+&1\le j_1<j_2<\cdots<j_k\le n,\qquad 1\le j_{k+1}<\cdots<j_n\le n\quad(\text{余指标});\\
+&1\le t_1<t_2<\cdots<t_k\le n,\qquad 1\le t_{k+1}<\cdots<t_n\le n\quad(\text{余指标}).
+\end{align*}
+取 $(j_1,j_2,\cdots,j_k)$ 的全排列 $(r_1,r_2,\cdots,r_k)$，其余指标为
+$(j_{k+1},\cdots,j_n)\sim(r_{k+1},\cdots,r_n)$；取
+$(t_1,t_2,\cdots,t_k)\sim(s_1,s_2,\cdots,s_k)$，其余指标为
+$(t_{k+1},\cdots,t_n)\sim(s_{k+1},\cdots,s_n)$。
+
+若两个单项相同，则对应项相等：
+\[
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{$\displaystyle
+\begin{pmatrix}
+a_{i_1r_1} & a_{i_2r_2} & \cdots & a_{i_kr_k} & a_{i_{k+1}r_{k+1}} & \cdots & a_{i_nr_n}\\
+\parallel & \parallel & & \parallel & \parallel & & \parallel\\
+a_{i_1s_1} & a_{i_2s_2} & \cdots & a_{i_ks_k} & a_{i_{k+1}s_{k+1}} & \cdots & a_{i_ns_n}
+\end{pmatrix}
+\;\Longrightarrow\;
+\begin{array}{l}
+r_t=s_t,\qquad \forall\,1\le t\le n,\\[2pt]
+(j_1\cdots j_k)=(t_1\cdots t_k).
+\end{array}$}
+\]
+\end{proof}
+
+\begin{proof}[\normalfont Laplace 定理的证明]
+$(*)$ 式中，$|A|$ 有 $n!$ 个单项；$(*)$ 式右边有
+\[
+\mathrm{C}_n^k\cdot k!\cdot(n-k)!=n!
+\]
+个单项。
+
+由引理~\ref{lem:4}，$(*)$ 式右边的单项都是 $|A|$ 的单项，且符号一致；
+由引理~\ref{lem:5}，$(*)$ 式右边展开的单项互不相同。故 $(*)$ 式成立。
+\end{proof}
+
+\begin{example}
+\[
+|A|=\begin{vmatrix}
+-1 & 1 & 1 & 2 & -1\\
+0 & -1 & 0 & 1 & 2\\
+2 & 1 & 1 & 3 & -1\\
+1 & 2 & 2 & 1 & 0\\
+0 & 3 & 0 & 1 & 3
+\end{vmatrix}
+\]
+解：对第 $1$ 列和第 $3$ 列进行 Laplace 展开：
+\[
+\resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{$\displaystyle
+|A|=
+\begin{vmatrix} -1 & 1\\ 2 & 1\end{vmatrix}
+\begin{vmatrix} -1 & 1 & 2\\ 2 & 1 & 0\\ 3 & 1 & 3\end{vmatrix}
+-\begin{vmatrix} -1 & 1\\ 1 & 2\end{vmatrix}
+\begin{vmatrix} -1 & 1 & 2\\ 1 & 3 & -1\\ 3 & 1 & 3\end{vmatrix}
+-\begin{vmatrix} 2 & 1\\ 1 & 2\end{vmatrix}
+\begin{vmatrix} 1 & 2 & -1\\ -1 & 1 & 2\\ 3 & 1 & 3\end{vmatrix}
+=-132.$}
+\]
+\end{example}
+
+\begin{corollary}
+设
+\[
+|A|=\begin{vmatrix}
+\overset{\scriptscriptstyle k\times k}{B} & \overset{\scriptscriptstyle k\times(n-k)}{C}\\[2pt]
+\underset{\scriptscriptstyle (n-k)\times k}{0} & \underset{\scriptscriptstyle (n-k)\times(n-k)}{D}
+\end{vmatrix}
+\]
+为\textbf{分块上三角行列式}；又设
+\[
+|A|=\begin{vmatrix}
+\overset{\scriptscriptstyle k\times k}{B} & \overset{\scriptscriptstyle k\times(n-k)}{0}\\[2pt]
+\underset{\scriptscriptstyle (n-k)\times k}{C} & \underset{\scriptscriptstyle (n-k)\times(n-k)}{D}
+\end{vmatrix}
+\]
+为\textbf{分块下三角行列式}，则
+\[
+|A|=|B|\cdot|D|.
+\]
+\end{corollary}
+
+\begin{proof}
+\textbf{上三角}：对前 $k$ 列进行 Laplace 展开，
+% ===== 原稿 PDF 第 27 页 =====
+此时非零的 $k$ 阶子式只有 $|B|$，则 $|A|=|B|\cdot|D|$。
+
+\textbf{下三角}：对前 $k$ 行进行 Laplace 展开，非零的 $k$ 阶子式只有 $|B|$，则 $|A|=|B|\cdot|D|$。
+\end{proof}
+
+\vspace{0.5em}
+\noindent\rule{\linewidth}{0.5pt}
+\begin{flushright}
+\footnotesize 第一章知识点完结。
+\end{flushright}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth]
+  \node[anchor=west] (quad) at (0,0) {$f(x)=ax^2+bx+c\quad(a\ne 0)$};
+  \node[anchor=west] (poly) at (0,-1.7) {$f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\quad(n\ge 0)$};
+  \draw[->] (quad.west) .. controls (-1.6,-0.4) and (-1.6,-1.3) .. (poly.west);
+\end{tikzpicture}
+\end{center}
+多项式看成函数。
+
+若 $a_n\ne 0$，则 $\deg f(x)=n$，称 $f(x)$ 为 $n$ 次多项式。
+
+\begin{proposition}
+设多项式 $f(x)$ 的次数 $\le n$。若存在 $n+1$ 个不同的数 $b_1,b_2,\cdots,b_{n+1}$，使得
+\[
+f(b_i)=0\qquad(1\le i\le n+1),
+\]
+则 $f(x)\equiv 0$。
+\end{proposition}
+
+\begin{proof}
+设 $f(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$，则对 $1\le i\le n+1$，
+\[
+0=f(b_i)=a_nb_i^n+a_{n-1}b_i^{n-1}+\cdots+a_1b_i+a_0,
+\]
+这里把 $a_0,a_1,\cdots,a_n$ 看成未知元，$b_i$ 看成常数。
+$x_0=a_0,\ x_1=a_1,\ \cdots,\ x_n=a_n$ 是下列线性方程组的解：
+\begin{equation}
+\begin{cases}
+1\cdot x_0+b_1x_1+\cdots+b_1^{n-1}x_{n-1}+b_1^nx_n=0,\\
+1\cdot x_0+b_2x_1+\cdots+b_2^{n-1}x_{n-1}+b_2^nx_n=0,\\
+\qquad\cdots\cdots\\
+1\cdot x_0+b_{n+1}x_1+\cdots+b_{n+1}^{n-1}x_{n-1}+b_{n+1}^nx_n=0,
+\end{cases}
+\tag{$*$}
+\end{equation}
+这是关于 $x_0,x_1,\cdots,x_n$ 的齐次线性方程组。$(*)$ 的系数行列式
+\[
+|A|=\begin{vmatrix}
+1 & b_1 & b_1^2 & \cdots & b_1^n\\
+1 & b_2 & b_2^2 & \cdots & b_2^n\\
+\vdots & \vdots & \vdots & & \vdots\\
+1 & b_{n+1} & b_{n+1}^2 & \cdots & b_{n+1}^n
+\end{vmatrix}
+=\prod_{1\le i<j\le n+1}(b_j-b_i)\ne 0.
+\]
+由 Cramer 法则，$(*)$ 有且仅有一组解；又 $(*)$ 有零解，故
+\[
+a_0=a_1=\cdots=a_n=0,
+\]
+即 $f(x)\equiv 0$。
+\end{proof}
+
+\begin{corollary}
+设 $f(x),g(x)$ 都是次数 $\le n$ 的多项式，若存在 $n+1$ 个不同的数 $b_1,\cdots,b_{n+1}$ 使得
+\[
+f(b_i)=g(b_i)\qquad(\forall\,1\le i\le n+1),
+\]
+则 $f(x)\equiv g(x)$。
+\end{corollary}
+
+\begin{proof}
+令 $h(x)=f(x)-g(x)$，则 $h(b_i)=0\ (\forall\,1\le i\le n+1)$。由命题，$h(x)\equiv 0$，
+故 \mbox{$f(x)\equiv g(x)$}。
+\end{proof}
+
+\begin{corollary}
+已知 $f(x)$ 的次数 $=n$，并且存在 $n+1$ 个不同的数 $b_1,\cdots,b_{n+1}$。已知
+$f(b_i)\ (1\le i\le n+1)$，则 $f(x)$ 唯一确定。
+\end{corollary}
+
+\begin{proof}
+令
+\[
+g(x)=\sum_{i=1}^{n+1}f(b_i)\,
+\frac{(x-b_1)\cdots(x-b_{i-1})(x-b_{i+1})\cdots(x-b_{n+1})}
+{(b_i-b_1)\cdots(b_i-b_{i-1})(b_i-b_{i+1})\cdots(b_i-b_{n+1})},
+\]
+则 $\deg g(x)\le n$，且 $g(b_i)=f(b_i)\ (1\le i\le n+1)$。由上述推论，即得
+$f(x)\equiv g(x)$，故 $f(x)$ 唯一确定。此即\textbf{拉格朗日（Lagrange）插值公式}。
+\end{proof}

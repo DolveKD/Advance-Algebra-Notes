@@ -1,0 +1,328 @@
+﻿% ===== 原稿 PDF 第 3-5 页 =====
+% 1.1 线性方程组的求解 / 1.2 余子式与代数余子式 / 1.3 按行(列)展开 / 1.4 几何意义 / 1.5 n 阶行列式定义
+
+\section{线性方程组的求解}
+
+讨论 $n$ 元线性方程组
+\begin{equation}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1,\\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2,\\
+\quad\cdots\cdots\\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m,
+\end{cases}
+\end{equation}
+其中 $a_{ij},\,b_i$ 为常数，$x_1,x_2,\dots,x_n$ 为未知元。
+本章（行列式）只研究 $m=n$ 的情形。
+
+\subsection{二元线性方程组与二阶行列式}
+
+当 $n=2$ 时，方程组为
+\begin{equation}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 = b_1, & (1)\\
+a_{21}x_1 + a_{22}x_2 = b_2, & (2)
+\end{cases}
+\end{equation}
+用\textbf{消元法}：$(1)\times a_{22}-(2)\times a_{12}$，得
+\[
+(a_{11}a_{22}-a_{12}a_{21})\,x_1 = b_1a_{22}-b_2a_{12}.
+\]
+同理 $(2)\times a_{11}-(1)\times a_{21}$，得
+\[
+(a_{11}a_{22}-a_{12}a_{21})\,x_2 = a_{11}b_2-a_{21}b_1.
+\]
+两个方程中出现的共同因子 $a_{11}a_{22}-a_{12}a_{21}$ 值得单独命名。
+
+\begin{definition}[二阶行列式]
+称
+\[
+\begin{vmatrix}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{vmatrix}
+= a_{11}a_{22}-a_{12}a_{21}
+\]
+为一个\textbf{二阶行列式}，它是一个数值（数），其中横排称为行，竖排称为列。
+\end{definition}
+
+于是当 $|A|=\begin{vmatrix} a_{11} & a_{12}\\ a_{21} & a_{22}\end{vmatrix}\neq 0$ 时，
+\[
+x_1=\frac{\begin{vmatrix} b_1 & a_{12}\\ b_2 & a_{22}\end{vmatrix}}{|A|},
+\qquad
+x_2=\frac{\begin{vmatrix} a_{11} & b_1\\ a_{21} & b_2\end{vmatrix}}{|A|}.
+\]
+即二元线性方程组的解可用二阶行列式表示，这就是二元情形的
+\textbf{克拉默（Cramer）法则}。
+
+\subsection{三元线性方程组与三阶行列式}
+
+当 $n=3$ 时，三元线性方程组为
+\begin{equation}
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1, & (1)\\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2, & (2)\\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3. & (3)
+\end{cases}
+\end{equation}
+采用\textbf{待定系数消元法}：用待定常数 $u,v,w$ 分别乘 $(1),(2),(3)$ 再相加，得
+\begin{align*}
+a_{11}x_1u + a_{12}ux_2 + a_{13}ux_3 &= b_1u,\\
+a_{21}x_1v + a_{22}vx_2 + a_{23}vx_3 &= b_2v,\\
+a_{31}x_1w + a_{32}wx_2 + a_{33}wx_3 &= b_3w.
+\end{align*}
+即
+\begin{align}
+(a_{11}u+a_{21}v+a_{31}w)\,x_1 &= b_1u+b_2v+b_3w, \tag{5}\\
+a_{12}u+a_{22}v+a_{32}w &= 0, \tag{6}\\
+a_{13}u+a_{23}v+a_{33}w &= 0. \tag{7}
+\end{align}
+由 $(6),(7)$ 消去 $v$，得
+\begin{align}
+a_{12}\frac{u}{w}+a_{22}\frac{v}{w} &= -a_{32}, \tag{8}\\
+a_{13}\frac{u}{w}+a_{23}\frac{v}{w} &= -a_{33}, \tag{9}
+\end{align}
+解出比值
+\[
+\frac{u}{w}=\frac{a_{22}a_{33}-a_{23}a_{32}}{a_{12}a_{23}-a_{13}a_{22}},\qquad
+\frac{v}{w}=-\frac{a_{12}a_{33}-a_{13}a_{32}}{a_{12}a_{23}-a_{13}a_{22}}.
+\]
+取
+\[
+u=\begin{vmatrix} a_{22} & a_{32}\\ a_{23} & a_{33}\end{vmatrix},\qquad
+v=-\begin{vmatrix} a_{12} & a_{32}\\ a_{13} & a_{33}\end{vmatrix},\qquad
+w=\begin{vmatrix} a_{12} & a_{22}\\ a_{13} & a_{23}\end{vmatrix},
+\]
+则 $(5)$ 式化为
+\[
+\left|\begin{matrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{matrix}\right|\,x_1
+= b_1u+b_2v+b_3w
+=\left|\begin{matrix}
+b_1 & a_{12} & a_{13}\\
+b_2 & a_{22} & a_{23}\\
+b_3 & a_{32} & a_{33}
+\end{matrix}\right|.
+\]
+
+\begin{definition}[三阶行列式的组合定义]
+对 $3\times 3$ 的数表定义
+\begin{align*}
+\begin{vmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix}
+& = a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\
+&\quad -a_{13}a_{22}a_{31}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33},
+\end{align*}
+称之为\textbf{三阶行列式}。三项取正号、三项取负号，正负号由「行列下标排列的奇偶性」决定。
+\end{definition}
+
+于是三元方程组的解为
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+x_1=\frac{\begin{vmatrix}
+b_1 & a_{12} & a_{13}\\
+b_2 & a_{22} & a_{23}\\
+b_3 & a_{32} & a_{33}
+\end{vmatrix}}{|A|},\qquad
+x_2=\frac{\begin{vmatrix}
+a_{11} & b_1 & a_{13}\\
+a_{21} & b_2 & a_{23}\\
+a_{31} & b_3 & a_{33}
+\end{vmatrix}}{|A|},\qquad
+x_3=\frac{\begin{vmatrix}
+a_{11} & a_{12} & b_1\\
+a_{21} & a_{22} & b_2\\
+a_{31} & a_{32} & b_3
+\end{vmatrix}}{|A|}$},
+\]
+其中 $|A|$ 为系数矩阵的行列式（即三阶情形下的克拉默法则）。
+
+\section{余子式与代数余子式}
+
+\begin{definition}[余子式]
+设 $|A|$ 为一个三阶行列式，将元素 $a_{ij}$ 所在的第 $i$ 行、第 $j$ 列删去，
+剩下的元素按原来的相对顺序构成的二阶行列式，称为 $a_{ij}$ 的\textbf{余子式}，
+记为 $M_{ij}$。
+\end{definition}
+
+于是三阶行列式可按第一列展开：
+\begin{equation}
+|A| = a_{11}M_{11}-a_{21}M_{21}+a_{31}M_{31}.
+\end{equation}
+
+\begin{example}
+\[
+\begin{vmatrix}
+1 & -1 & 2\\
+2 & 0 & 3\\
+-1 & -3 & 2
+\end{vmatrix}
+= 1\times\begin{vmatrix} 0 & 3\\ -3 & 2\end{vmatrix}
+- 2\times\begin{vmatrix} -1 & 2\\ -3 & 2\end{vmatrix}
++(-1)\times\begin{vmatrix} -1 & 2\\ 0 & 3\end{vmatrix}
+= 9-8+3 = 4.
+\]
+\end{example}
+
+\begin{example}
+\[
+\resizebox{\linewidth}{!}{$\displaystyle
+\begin{vmatrix}
+a & a^2+a+1 & 1\\
+0 & -a & a-1\\
+1 & 0 & 0
+\end{vmatrix}
+= a\times\begin{vmatrix} -a & a-1\\ 0 & 0\end{vmatrix}
+- 0\times M_{21}
++ 1\times\begin{vmatrix} a^2+a+1 & 1\\ -a & a-1\end{vmatrix}
+= a^3+a-1$},
+\]
+这里按第三行展开更为简便，因为第三行只有一个非零元素。
+\end{example}
+
+\begin{definition}[上、下三角行列式]
+设
+\[
+|A|=\begin{vmatrix}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{vmatrix},
+\]
+其中 $a_{11},a_{22},a_{33}$ 所在的对角线称为\textbf{主对角线}。
+\begin{enumerate}[label=\textbullet,leftmargin=2.2em,itemsep=0.2em]
+\item 若主对角线\textbf{下方}的元素全为 $0$，即 $a_{ij}=0\ (i>j)$，则称 $|A|$ 为\textbf{上三角行列式}；
+\item 若主对角线\textbf{上方}的元素全为 $0$，即 $a_{ij}=0\ (i<j)$，则称 $|A|$ 为\textbf{下三角行列式}。
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[代数余子式]
+称
+\[
+A_{ij}=(-1)^{i+j}M_{ij}
+\]
+为元素 $a_{ij}$ 的\textbf{代数余子式}。
+\end{definition}
+
+于是
+\[
+|A| = a_{11}A_{11}+a_{21}A_{21}+a_{31}A_{31}.
+\]
+
+\begin{definition}[转置行列式]
+把行列式的行与列互换（第 $i$ 行变为第 $i$ 列），得到的行列式称为原行列式的
+\textbf{转置行列式}，记为 $|A'|$，即
+\[
+|A'|=\begin{vmatrix}
+a_{11} & a_{21} & a_{31}\\
+a_{12} & a_{22} & a_{32}\\
+a_{13} & a_{23} & a_{33}
+\end{vmatrix}.
+\]
+\end{definition}
+
+\section{按行（列）展开}
+
+\begin{proposition}[展开定理]
+设 $|A|=(a_{ij})$ 为三阶行列式，$A_{ij}$ 为 $a_{ij}$ 的代数余子式，则
+\begin{align}
+|A| &= a_{1i}A_{1i}+a_{2i}A_{2i}+a_{3i}A_{3i} \qquad (\text{按第 } i \text{ 列展开}),\\
+|A| &= a_{i1}A_{i1}+a_{i2}A_{i2}+a_{i3}A_{i3} \qquad (\text{按第 } i \text{ 行展开}).
+\end{align}
+\end{proposition}
+
+\begin{proof}
+按第一列展开即 (1.4) 式。对其余的行、列，只需注意交换两行（列）会使行列式变号，
+而交换后总可以把待展开的行（列）移到第一行（列）的位置，故一般情形成立。
+\end{proof}
+
+\section{行列式的几何意义}
+
+\subsection{二阶行列式的几何意义}
+
+设平面上两点 $A(a_1,a_2)$、$B(b_1,b_2)$，记 $\vec{OA}=(a_1,a_2)$，$\vec{OB}=(b_1,b_2)$，
+$\theta$ 为两向量的夹角，则三角形 $OAB$ 的面积为
+\[
+S_{\triangle OAB}=\frac12|\vec{OA}|\,|\vec{OB}|\sin\theta
+=\frac12\left|\begin{vmatrix} a_1 & a_2\\ b_1 & b_2\end{vmatrix}\right|
+=\frac12|a_1b_2-a_2b_1|.
+\]
+即\textbf{二阶行列式的绝对值等于以两向量为邻边的平行四边形的面积}。
+
+\begin{center}
+\begin{tikzpicture}[scale=1.15,>={Stealth[length=2mm]}]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (2.6,1.7);
+  \coordinate (B) at (3.9,-0.5);
+  \fill[gray!18] (O) -- (A) -- (B) -- cycle;
+  \draw[->] (O) -- (A) node[above left] {$A$};
+  \draw[->] (O) -- (B) node[below right] {$B$};
+  \draw (A) -- (B);
+  \node[left] at (O) {$O$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{三阶行列式的几何意义}
+
+设 $\vec{OA}=(a_1,a_2,a_3)$，$\vec{OB}=(b_1,b_2,b_3)$，$\vec{OC}=(c_1,c_2,c_3)$ 为空间中三个向量，
+则以它们为棱的平行六面体（从而四面体 $OABC$）的体积为
+\[
+V_{OABC}=\frac16\left|
+\begin{vmatrix}
+a_1 & a_2 & a_3\\
+b_1 & b_2 & b_3\\
+c_1 & c_2 & c_3
+\end{vmatrix}\right|.
+\]
+即\textbf{三阶行列式的绝对值等于以三向量为棱的平行六面体的体积}（混合积的几何意义）。
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0,>={Stealth[length=2mm]}]
+  \coordinate (O) at (0,0);
+  \coordinate (A) at (3.0,0.3);
+  \coordinate (B) at (1.4,2.4);
+  \coordinate (C) at (3.1,2.9);
+  \fill[gray!15] (O) -- (A) -- (C) -- (B) -- cycle;
+  \draw[->] (O) -- (A) node[right] {$A$};
+  \draw[->] (O) -- (B) node[above left] {$B$};
+  \draw[->] (O) -- (C) node[above right] {$C$};
+  \draw[dashed] (A) -- (C);
+  \draw[dashed] (B) -- (C);
+  \node[below left] at (O) {$O$};
+\end{tikzpicture}
+\end{center}
+
+\section{$n$ 阶行列式的定义}
+
+\begin{definition}[$n$ 阶行列式]
+由 $n^2$ 个数排成 $n$ 行 $n$ 列、并用两条竖线围成的式子，称为 $n$ 阶行列式：
+\[
+|A|=\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & & \vdots\\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix},
+\]
+其中 $a_{i1},a_{i2},\dots,a_{in}$ 称为第 $i$ \textbf{行}，$a_{1j},a_{2j},\dots,a_{nj}$ 称为第 $j$ \textbf{列}，
+$a_{ij}$ 称为第 $(i,j)$ \textbf{元}；$a_{11},a_{22},\dots,a_{nn}$ 所在的对角线称为\textbf{主对角线}。
+
+行列式也记作 $\det(A)$（determinant）。删去 $a_{ij}$ 所在的第 $i$ 行、第 $j$ 列，
+剩余元素按原来顺序构成的 $n-1$ 阶行列式，称为 $a_{ij}$ 的\textbf{余子式}，记为 $M_{ij}$。
+\end{definition}
+
+\begin{definition}[$n$ 阶行列式的递推定义]
+当 $n=1$ 时，规定 $|a_{11}|=a_{11}$。
+
+设所有 $n-1$ 阶行列式的值已定义好，则按\textbf{第一列展开}定义 $n$ 阶行列式：
+\[
+|A|\;\overset{\mathrm{def}}{=}\;a_{11}M_{11}-a_{21}M_{21}+a_{31}M_{31}-\cdots+(-1)^{n+1}a_{n1}M_{n1}
+=\sum_{i=1}^{n}(-1)^{i+1}a_{i1}M_{i1}.
+\]
+\end{definition}

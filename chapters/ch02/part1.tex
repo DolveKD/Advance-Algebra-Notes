@@ -1,0 +1,206 @@
+% ===== 原稿 PDF 第 30 页 =====
+% 矩阵乘法的维数关系、第 (2)(3) 条、例、乘法的性质及结合律的证明、方阵的乘方（定义 7）
+% 本页是「矩阵的运算」一节的续页，原稿无灰底方框节标题块，故不新开 \section
+
+$AB$ 的行数 $=$ $A$ 的行数，$AB$ 的列数 $=$ $B$ 的列数。
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth,every node/.style={inner sep=2pt}]
+  \node (A)   at (0,0)      {$A$};
+  \node (B)   at (3.0,0)    {$B$};
+  \node (AB)  at (6.4,0)    {$AB$};
+  \node (Ad)  at (0,-0.6)   {$m\times n$};
+  \node (Bd)  at (3.0,-0.6) {$n\times p$};
+  \node (ABd) at (6.4,-0.6) {$m\times p$};
+  \draw[->] ([xshift=6mm]B.east) -- ([xshift=-6mm]AB.west);
+  \draw ([xshift=1mm,yshift=-1mm]Ad.south east) to[bend right=30] ([xshift=-1mm,yshift=-1mm]Bd.south west);
+\end{tikzpicture}
+\end{center}
+% 原稿图中 A 下方标 m×n（有涂改），B 下方标 n×p（首字笔迹涂改不清），AB 下方标 m×p 处笔迹作 m×n；
+% 此处按可乘条件及下方例子（2×3、3×4、2×4）与后文 B=(b_{ij})_{n×p} 取 A:m×n、B:n×p、AB:m×p
+% 原稿在 A、B 的阶数之间画弧线相连（表示内阶数 n 相同），已用下弧示意
+
+(2) $AB$ 的第 $(i,j)$ 元素 $=$ $A$ 的第 $i$ 行与 $B$ 的第 $j$ 列对应元素乘积之和。
+% 原稿作「对应元素之和」（脱「乘积」二字）
+
+\begin{example}
+% 原稿在三个矩阵上方分别标注 2×3、3×4、2×4
+\[
+\begin{pmatrix}
+1 & 0 & 1\\
+2 & 1 & 0
+\end{pmatrix}
+\begin{pmatrix}
+1 & 0 & 1 & 1\\
+1 & 1 & 2 & -1\\
+-1 & 0 & -1 & 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 0 & 0 & 1\\
+3 & 1 & 4 & 1
+\end{pmatrix}
+\]
+\end{example}
+
+(3) 矩阵乘法一般不满足交换律。
+
+即使 $AB$，$BA$ 都有意义，但 $AB\ne BA$。
+
+\begin{enumerate}[label=(\arabic*)]
+\item $A=(1\ 1\ 1)$，$B=\begin{pmatrix}1\\1\\1\end{pmatrix}$，$AB=(3)$，
+\[
+BA=\begin{pmatrix}
+1 & 1 & 1\\
+1 & 1 & 1\\
+1 & 1 & 1
+\end{pmatrix}\ne AB;
+\]
+\item $A=\begin{pmatrix}0 & 1\\0 & 0\end{pmatrix}$，$B=\begin{pmatrix}0 & 0\\0 & 1\end{pmatrix}$，
+\[
+AB=\begin{pmatrix}0 & 1\\0 & 0\end{pmatrix}\ne BA=\begin{pmatrix}0 & 0\\0 & 0\end{pmatrix}.
+\]
+\end{enumerate}
+
+\textbf{乘法的性质}
+\begin{enumerate}[label=(\arabic*)]
+\item 结合律：$(A\cdot B)\cdot C=A\cdot(B\cdot C)$；
+\item 分配律：$(A+B)\cdot C=AC+BC$，
+\[
+A\cdot(B+C)=AB+AC;
+\]
+\item 与数乘的相容性：$c\cdot(A\cdot B)=(c\cdot A)\cdot B=A\cdot(c\cdot B)$；
+\item 单位元：记 $A_{m\times n}$，$I_m\cdot A=A=A\cdot I_n$。
+\end{enumerate}
+
+\begin{proof}
+只证 (1)。设 $A=(a_{ij})_{m\times n}$，$B=(b_{ij})_{n\times p}$，$C=(c_{ij})_{p\times q}$。
+
+先考虑 $AB$ 的第 $(i,r)$ 元素：
+\[
+\sum_{k=1}^{n}a_{ik}b_{kr}.
+\]
+对 $(AB)\cdot C$ 的第 $(i,j)$ 元素：
+% 原稿此行行首有一字（形似「对」），笔迹难辨，按上下文作「对」
+\[
+\sum_{r=1}^{p}\Big(\sum_{k=1}^{n}a_{ik}b_{kr}\Big)\cdot c_{rj}
+=\sum_{r=1}^{p}\sum_{k=1}^{n}a_{ik}b_{kr}c_{rj}.
+\]
+$A(BC)$：先考虑 $BC$ 的第 $(k,j)$ 元素
+% 原稿自「A(BC)」起用一个大左括号（括住下面三行），此处按行顺次排出
+\[
+\sum_{r=1}^{p}b_{kr}c_{rj},
+\]
+第 $(i,j)$ 元素
+\[
+=\sum_{k=1}^{n}a_{ik}\Big(\sum_{r=1}^{p}b_{kr}c_{rj}\Big)
+=\sum_{k=1}^{n}\sum_{r=1}^{p}a_{ik}b_{kr}c_{rj}.
+\]
+\[
+\Rightarrow\quad(AB)C=A(BC)\quad\ast
+\]
+$ABC$ 的第 $(i,j)$ 元
+% 原稿在 A、B 下分别注 n、p（示 A 为 m×n、B 为 n×p）
+\[
+\sum_{k=1}^{n}\sum_{r=1}^{p}a_{ik}b_{kr}c_{rj}.\qedhere
+\]
+\end{proof}
+
+$\forall\,A_1,A_2,\cdots,A_m$，乘积写为 $A_1A_2\cdots A_m$。
+
+\begin{definition}[方阵的乘方]% 原稿标为「定义 7」
+设 $A$ 为 $n$ 阶方阵，$A\cdot A=A^2$；
+\[
+\forall\,k\ge 1,\qquad A^{k}\overset{\text{def}}{=}\underbrace{A\cdot A\cdots A}_{k\ \text{个}},
+\]
+称为 $A$ 的\textbf{乘方}。
+\end{definition}
+
+% ===== 原稿 PDF 第 31 页 =====
+% 乘方的性质、注 (1)(2)(3)、例、转置（定义 8）与转置性质及其证明
+
+\textbf{乘方的性质}
+\begin{enumerate}[label=(\arabic*)]
+\item $A^{r}\cdot A^{s}=A^{r+s}$；
+\item $(A^{r})^{s}=A^{rs}$\qquad$(r,s\in\Z^{+})$。
+\end{enumerate}
+
+\begin{remark}% 原稿仅标「注」，其下按 (1)(2)(3) 编号
+(1) 设 $A,B$ 为 $n$ 阶方阵，一般地
+\[
+(A\cdot B)^{r}\ne A^{r}\cdot B^{r},
+\]
+\[
+(A\cdot B)^{r}=\underbrace{(AB)(AB)\cdots(AB)}_{r\ \text{个}}.
+\]
+% 原稿第二式另起一行，仅写「=(AB)(AB)…(AB)」（下方括注 r 个），承接 (A·B)^r
+
+(2) 若 $AB=BA$，则 $(AB)^{r}=A^{r}\cdot B^{r}$，进一步
+\[
+(A+B)^{m}=A^{m}+C_m^1A^{m-1}B+\cdots+C_m^{m-1}AB^{m-1}+B^{m}.
+\]
+\[
+A\cdot I_n=I_n\cdot A=A,
+\]
+纯量阵 $cI_n$：
+\[
+A(cI_n)=(cI_n)A=cA,
+\]
+\[
+(cI_n+A)^{m}=c^{m}I_n+C_m^1c^{m-1}A+\cdots+C_m^{m-1}cA^{m-1}+A^{m}.
+\]
+
+(3) 矩阵乘法消去律一般不成立。
+\[
+AB=AC\ \text{且}\ A\ne 0\ \not\Rightarrow\ B=C,
+\]
+% 原稿此行左侧另注（与数的情形对比）：ab=ac 且 a≠0 ⇒ b=c
+「整性」一般不成立：
+% 原稿「整性」二字被圈出，并以箭头连至上一行的「消去律」
+\[
+A\ne 0\ \text{且}\ B\ne 0\ \not\Rightarrow\ AB\ne 0.
+\]
+% 原稿此式下方另注（数）：a≠0, b≠0 ⇒ ab≠0
+\end{remark}
+
+\begin{example}
+\[
+A=B=\begin{pmatrix}0 & 1\\0 & 0\end{pmatrix},\qquad
+C=\begin{pmatrix}0 & 0\\0 & 0\end{pmatrix}.
+\]
+\end{example}
+
+\begin{definition}[转置矩阵、对称阵与反对称阵]% 原稿标为「定义 8」
+设 $A=(a_{ij})_{m\times n}$，$A$ 的转置（$A^{T}$）$A'$ 是 $n\times m$ 阶矩阵，
+\[
+A'=(b_{ij})_{n\times m},
+\]
+其中 $b_{ij}=a_{ji}$。即 $A'$ 的第 $i$ 行就是 $A$ 的第 $i$ 列，$A'$ 的第 $j$ 列是 $A$ 的第 $j$ 行。
+
+若 $A'=A$，则称 $A$ 为\textbf{对称阵}，
+\[
+A=\begin{pmatrix}1 & 3\\3 & 2\end{pmatrix};
+\]
+若 $A'=-A$，则称 $A$ 为\textbf{反对称阵}，
+\[
+A=\begin{pmatrix}0 & 1\\-1 & 0\end{pmatrix}.
+\]
+\end{definition}
+
+\textbf{转置性质}
+\begin{enumerate}[label=(\arabic*)]
+\item $A''=A$；
+\item $(A+B)'=A'+B'$；
+\item $(c\cdot A)'=c\cdot A'$；
+\item $(A\cdot B)'=B'\cdot A'$。
+\end{enumerate}
+
+\begin{proof}
+(4) $(AB)'$ 的第 $(i,j)$ 元 $=$ $AB$ 的第 $(j,i)$ 元
+\[
+=A\ \text{的第}\ j\ \text{行}\cdot B\ \text{的第}\ i\ \text{列}.
+\]
+$B'A'$ 的第 $(i,j)$ 元 $=$ $B'$ 的第 $i$ 行 $\cdot$ $A'$ 的第 $j$ 列 $=$ $B$ 的第 $i$ 列 $\cdot$ $A$ 的第 $j$ 行。
+
+于是 $(AB)'=B'A'$。
+\end{proof}

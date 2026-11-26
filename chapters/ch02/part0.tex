@@ -1,0 +1,210 @@
+\section{矩阵的概念}
+% ===== 原稿 PDF 第 28 页 =====
+% 页首灰底大标题「第二章 矩阵」由章标题自动生成，此处不转录；其右侧并列两个节标题「矩阵的概念／矩阵的运算」
+
+\begin{definition}% 原稿标为「定义 1」
+把 $mn$ 个数 $a_{ij}\ (1\le i\le m,\ 1\le j\le n)$ 排成一个矩形阵列，称为一个 $m\times n$ 阶矩阵
+\[
+A=
+\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{pmatrix}
+=(a_{ij})_{m\times n}.
+\]
+
+$a_{ij}$ 称为第 $(i,j)$ 元素。若 $a_{ij}\ (\forall\,i,j)\in\R\ (\C)$，则称为\textbf{实（复）矩阵}。
+
+若 $\forall\,i,j$，$a_{ij}=0$，则称 $A$ 为\textbf{零矩阵}，记为 $O_{m\times n}$。
+
+若 $m=n$，则称 $A$ 为 $n$ 阶\textbf{方阵}。
+
+设 $A=(a_{ij})_{n\times n}$ 为方阵，则称 $a_{11},a_{22},\cdots,a_{nn}$ 连成一线为 $A$ 的\textbf{主对角线}。
+
+若 $\forall\,i\neq j$，$a_{ij}=0$，则称 $A$ 为\textbf{对角阵}，简记为 $\operatorname{diag}\{a_{11},a_{22},\cdots,a_{nn}\}$。
+\[
+A=
+\begin{pmatrix}
+a_{11} & 0 & \cdots & 0\\
+0 & a_{22} & \cdots & 0\\
+\vdots & \vdots & & \vdots\\
+0 & 0 & \cdots & a_{nn}
+\end{pmatrix}.
+\]
+
+进一步，若 $a_{11}=a_{22}=\cdots=a_{nn}=1$，这样的对角阵称为\textbf{单位阵}，记为
+\[
+I_n=
+\begin{pmatrix}
+1 & 0 & \cdots & 0\\
+0 & 1 & \cdots & 0\\
+\vdots & \vdots & & \vdots\\
+0 & 0 & \cdots & 1
+\end{pmatrix}.
+\]
+
+若 $a_{ij}=0\ (\forall\,i>j)$，则称 $A$ 为\textbf{上三角阵}，若 $a_{ij}=0\ (\forall\,i<j)$，则称为\textbf{下三角阵}。
+\end{definition}
+
+\begin{definition}% 原稿标为「定义 2」
+设 $A=(a_{ij})_{m\times n}$，$B=(b_{ij})_{s\times t}$。
+\[
+A=B\overset{\mathrm{def}}{\Longleftrightarrow}m=s,\quad n=t,\quad a_{ij}=b_{ij}
+\quad\left(\substack{\forall\,1\le i\le m\\[1pt] \forall\,1\le j\le n}\right).
+\]
+\end{definition}
+
+\begin{example}% 原稿标为「例」
+\[
+(1)\ \begin{pmatrix}
+0 & 0\\
+0 & 0
+\end{pmatrix}_{2\times2}
+\neq
+\begin{pmatrix}
+0 & 0 & 0\\
+0 & 0 & 0
+\end{pmatrix}_{2\times3}
+\qquad\qquad
+(2)\ \begin{pmatrix}
+1 & 0\\
+0 & 0
+\end{pmatrix}
+\neq
+\begin{pmatrix}
+1 & 1\\
+0 & 0
+\end{pmatrix}
+\]
+\end{example}
+
+\begin{definition}% 原稿标为「定义 3」
+设 $A=(a_{ij})_{m\times n}$，则 $(a_{i1},a_{i2},\cdots,a_{in})$ 称为 $A$ 的第 $i$ 个\textbf{行向量}；
+\[
+\begin{pmatrix}
+a_{1j}\\
+a_{2j}\\
+\vdots\\
+a_{mj}
+\end{pmatrix}
+\]
+称为 $A$ 的第 $j$ 个\textbf{列向量}。
+
+称 $1\times n$ 矩阵 $(a_1,a_2,\cdots,a_n)$ 称为 $n$ 维行向量。
+
+称 $n\times 1$ 矩阵 $\begin{pmatrix}a_1\\a_2\\\vdots\\a_n\end{pmatrix}$ 称为 $n$ 维列向量。
+\end{definition}
+
+记 $M_n(\R)$ 为 $n$ 阶实方阵全体构成的集合（$M_n(\C)$ 为 $n$ 阶复方阵全体构成的集合）。
+% 原稿在 M_n(R) 的 R 下注「(C)」、在「实」下注「(复)」，即同时给出复矩阵的情形
+
+映射（函数）：
+\[
+\begin{array}{r@{\ }c@{\ }l}
+\det\colon & M_n(\R) & \longrightarrow\ \R\\[2pt]
+& A & \longmapsto\ |A|=\det(A)
+\end{array}
+\]
+
+% ===== 原稿 PDF 第 29 页 =====
+
+\noindent\textbf{问题}\quad (1) $n$ 阶行列式的值在多大程度上反映 $n$ 阶方阵的性质？
+
+(2) 映射 $\det$ 具有怎样的性质？
+
+\section{矩阵的运算}% 编者所加：原稿无独立标题
+
+\noindent\textbf{矩阵的加减法}\quad 设 $A=(a_{ij})_{m\times n}$，$B=(b_{ij})_{m\times n}$。
+\[
+\begin{aligned}
+A+B&\overset{\mathrm{def}}{=}(a_{ij}+b_{ij})_{m\times n},\\
+A-B&\overset{\mathrm{def}}{=}(a_{ij}-b_{ij})_{m\times n}.
+\end{aligned}
+\]
+
+\begin{example}% 原稿标为「例」
+\[
+(1)\ \begin{pmatrix}
+1 & 2 & 0\\
+-1 & 3 & 1
+\end{pmatrix}
++
+\begin{pmatrix}
+1 & -2 & 1\\
+-1 & -3 & 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 & 0 & 1\\
+-2 & 0 & 1
+\end{pmatrix}
+\]
+\[
+(2)\quad A_{m\times n}\pm O_{m\times n}=A_{m\times n}
+\]
+\end{example}
+
+\begin{definition}[加法性质]% 原稿标为「定义 4 加法性质」
+\[
+\begin{array}{r@{\quad}l@{\qquad}l}
+(1) & \text{交换律：} & A+B=B+A,\\
+(2) & \text{结合律：} & (A+B)+C=A+(B+C),\\
+(3) & \text{零矩阵：} & A+O=A,\\
+(4) & \text{负矩阵：} & A+(-A)=O,\\
+(5) & & A-B=A+(-B).
+\end{array}
+\]
+\end{definition}
+
+\begin{definition}[数乘]% 原稿标为「定义 5」
+设 $A=(a_{ij})_{m\times n}$，$c$ 为常数。% 原稿作「C 为常数」，下文公式中均记作 c
+
+$c$ 与 $A$ 的数乘为（scalar product）
+\[
+c\cdot A\overset{\mathrm{def}}{=}(c\cdot a_{ij})_{m\times n}.
+\]
+负矩阵
+\[
+-A\overset{\mathrm{def}}{=}(-1)\cdot A=(-a_{ij})_{m\times n}.
+\]
+\end{definition}
+
+\begin{example}% 原稿标为「例」
+\[
+2\cdot
+\begin{pmatrix}
+1 & 2\\
+3 & 4
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 & 4\\
+6 & 8
+\end{pmatrix}.
+\]
+\end{example}
+
+\noindent\textbf{数乘的性质}
+\[
+\begin{array}{r@{\quad}l@{\qquad}l}
+(1) & \text{数的分配律：} & (c+d)A=cA+dA,\\
+(2) & \text{矩阵的分配律：} & c\cdot(A+B)=c\cdot A+c\cdot B,\\
+(3) & \text{数乘的结合律：} & (cd)\cdot A=c\cdot(d\cdot A),\\
+(4) & \text{数乘单位元：} & 1\cdot A=A,\\
+(5) & \text{数乘零元：} & 0\cdot A_{m\times n}=O_{m\times n}.
+\end{array}
+\]
+
+\begin{definition}[矩阵乘法]% 原稿标为「定义 6 矩阵乘法」
+设 $A=(a_{ij})_{m\times k}$，$B=(b_{ij})_{k\times n}$，定义 $A$ 与 $B$ 的乘积 $C$ 是 $m\times n$ 矩阵，其元素
+\[
+c_{ij}=a_{i1}b_{1j}+a_{i2}b_{2j}+\cdots+a_{ik}b_{kj}=\sum_{r=1}^{k}a_{ir}b_{rj}.
+\]
+% 原稿求和下标手写略似「n=1」，按通项 a_{ir}b_{rj} 记为 ∑_{r=1}^{k}
+\end{definition}
+
+\begin{remark}% 原稿标为「注」
+(1) 只有 $A$ 的列数 $=$ $B$ 的行数，$AB$ 才有意义。
+\end{remark}
